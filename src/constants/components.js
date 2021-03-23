@@ -19,7 +19,6 @@ let COMPONENT_LIST =
       label: '按钮',
       propValue: '按钮',
       antdProps: {},
-      icon: 'wenben',
       style: {
         width: 80,
         height: 32,

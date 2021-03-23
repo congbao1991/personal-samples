@@ -41,7 +41,7 @@ function Editor(props) {
         case 'antd-button':
           const { top, left, ...rest } = com.style
           return (
-            <Shape key={com.id} id={com.id} style={{ top, left }}>
+            <Shape key={com.id} id={com.id} width={com.style.width} height={com.style.height} style={{ top, left }}>
               <Button
                 {...com.antdProps}
                 style={rest}>
