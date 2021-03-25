@@ -14,6 +14,7 @@
     "@congbao/time-period-selector": "^1.0.5",
     "antd": "^4.7.3",
     "axios": "^0.21.0",
+    "classname": "^0.0.0",
     "mobx": "^6.0.1",
     "mobx-react": "^7.0.0",
     "react": "^17.0.1",

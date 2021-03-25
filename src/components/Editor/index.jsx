@@ -27,6 +27,9 @@ function Editor(props) {
     e.preventDefault()
     e.stopPropagation()
     const component = deepCopy(COMPONENT_LIST[e.dataTransfer.getData('index')])
+    if (!component) {
+      return;
+    }
     component.style.top = e.nativeEvent.offsetY
     component.style.left = e.nativeEvent.offsetX
     component.id = generateID()

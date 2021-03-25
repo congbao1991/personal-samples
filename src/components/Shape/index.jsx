@@ -1,18 +1,24 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { updateComponent } from '@/store/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import cs from 'classname'
 
+import { updateComponent, setCurComponentID } from '@/store/actions'
+import Hidden from '@/components/Hidden'
 import './index.less'
 
 function Shape(props) {
 
+  const [cursors, setCursors] = useState(null)
   const dispatch = useDispatch()
+  const curComponentID = useSelector(state => state.crud.curComponentID)
 
   // 监听鼠标按下事件
   const onShapeMouseDown = e => {
 
-    const [cursors, setCursors] = useState({})
+    e.preventDefault()
+    e.stopPropagation()
 
+    dispatch(setCurComponentID({ id: props.id }))
     // 记录鼠标起始位置
     let startX = e.clientX;
     let startY = e.clientY;
@@ -34,8 +40,7 @@ function Shape(props) {
       pos.top = top < 0 ? 0 : top;
       pos.left = left < 0 ? 0 : left;
 
-      dispatch(updateComponent({ id: props.id, style: pos }))
-
+      dispatch(updateComponent({ style: pos }))
     }
 
     const up = () => {
@@ -45,6 +50,11 @@ function Shape(props) {
 
     document.addEventListener('mousemove', move)
     document.addEventListener('mouseup', up)
+  }
+
+  const onPointMouseDown = (e, point) => {
+    e.stopPropagation()
+    e.preventDefault()
   }
 
   // 八个方向圆点
@@ -74,7 +84,42 @@ function Shape(props) {
     { start: 293, end: 338, cursor: 'w' },
   ]
 
+  // 获取圆点鼠标悬浮光标样式
+  const getCursors = () => {
+    // const rotate = mod360(curComponent.style.rotate) // 取余 360
+    const result = {}
+    let lastMatchIndex = -1 // 从上一个命中的角度的索引开始匹配下一个，降低时间复杂度
+
+    pointList.forEach(point => {
+      // const angle = mod360(initialAngle[point] + rotate)
+      const angle = initialAngle[point]
+      const len = angleToCursor.length
+      while (true) {
+        lastMatchIndex = (lastMatchIndex + 1) % len
+        const angleLimit = angleToCursor[lastMatchIndex]
+        if (angle < 23 || angle >= 338) {
+          result[point] = 'nw-resize'
+          return
+        }
+
+        if (angleLimit.start <= angle && angle < angleLimit.end) {
+          result[point] = angleLimit.cursor + '-resize'
+          return
+        }
+      }
+    })
+    return result
+  }
+
+  // 初始化鼠标悬浮光标样式
+  if (!cursors) {
+    setCursors(getCursors())
+  }
+
   const getPointStyle = point => {
+    if (!cursors) {
+      return;
+    }
     const { width, height } = props
     const hasT = /t/.test(point)
     const hasB = /b/.test(point)
@@ -106,7 +151,7 @@ function Shape(props) {
       marginTop: -4,
       left: newLeft,
       top: newTop,
-      // cursor: this.cursors[point],
+      cursor: cursors[point],
     }
     return style
   }
@@ -115,13 +160,15 @@ function Shape(props) {
   const generatePoints = () => {
     return pointList.map(point => {
       return (
-        <div className="shape-point" key={point} style={getPointStyle(point)}></div>
+        <Hidden key={point} visible={curComponentID == props.id}>
+          <div className="shape-point" onMouseDown={(e) => onPointMouseDown(e, point)} style={getPointStyle(point)}></div>
+        </Hidden>
       )
     })
   }
 
   return (
-    <div className="shape" onMouseDown={onShapeMouseDown} style={props.style}>
+    <div className={cs('shape', { actived: curComponentID == props.id })} onMouseDown={onShapeMouseDown} style={props.style}>
       {generatePoints()}
       {props.children}
     </div>
