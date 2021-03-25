@@ -62,6 +62,7 @@ function Editor(props) {
     <div className="editor-container">
       <div
         className="editor-wrapper"
+        id="editor"
         onDragOver={onDragOver}
         onDrop={onDrop}
       >

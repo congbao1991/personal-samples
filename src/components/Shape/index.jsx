@@ -4,6 +4,7 @@ import cs from 'classname'
 
 import { updateComponent, setCurComponentID } from '@/store/actions'
 import Hidden from '@/components/Hidden'
+import calculateComponentPositonAndSize from '@/utils/calculateComponentPositonAndSize'
 import './index.less'
 
 function Shape(props) {
@@ -11,6 +12,7 @@ function Shape(props) {
   const [cursors, setCursors] = useState(null)
   const dispatch = useDispatch()
   const curComponentID = useSelector(state => state.crud.curComponentID)
+  const editor = document.querySelector('#editor');
 
   // 监听鼠标按下事件
   const onShapeMouseDown = e => {
@@ -55,6 +57,74 @@ function Shape(props) {
   const onPointMouseDown = (e, point) => {
     e.stopPropagation()
     e.preventDefault()
+
+    const { width, height, style } = props
+
+    let calculateStyle = { ...style }
+    // 组件宽高比
+    const proportion = width / height
+
+    // 组件中心点
+    const center = {
+      x: calculateStyle.left + width / 2,
+      y: calculateStyle.top + height / 2,
+    }
+
+    // 获取画布位移信息
+    const editorRectInfo = editor.getBoundingClientRect()
+
+    // 当前点击坐标
+    const curPoint = {
+      x: e.clientX - editorRectInfo.left,
+      y: e.clientY - editorRectInfo.top,
+    }
+
+    // 获取对称点的坐标
+    const symmetricPoint = {
+      x: center.x - (curPoint.x - center.x),
+      y: center.y - (curPoint.y - center.y),
+    }
+
+    // 是否需要保存快照
+    // let needSave = false
+    let isFirst = true
+
+    const needLockProportion = false
+
+    const move = (moveEvent) => {
+      // 第一次点击时也会触发 move，所以会有“刚点击组件但未移动，组件的大小却改变了”的情况发生
+      // 因此第一次点击时不触发 move 事件
+      if (isFirst) {
+        isFirst = false
+        return
+      }
+
+      // needSave = true
+      const curPositon = {
+        x: moveEvent.clientX - editorRectInfo.left,
+        y: moveEvent.clientY - editorRectInfo.top,
+      }
+
+      calculateStyle.rotate = calculateStyle.rotate || 0
+      calculateStyle.width = calculateStyle.width || width
+      calculateStyle.height = calculateStyle.height || height
+
+      calculateComponentPositonAndSize(point, calculateStyle, curPositon, proportion, needLockProportion, {
+        center,
+        curPoint,
+        symmetricPoint,
+      })
+      dispatch(updateComponent({ style: calculateStyle }))
+    }
+
+    const up = () => {
+      document.removeEventListener('mousemove', move)
+      document.removeEventListener('mouseup', up)
+      // needSave && this.$store.commit('recordSnapshot')
+    }
+
+    document.addEventListener('mousemove', move)
+    document.addEventListener('mouseup', up)
   }
 
   // 八个方向圆点

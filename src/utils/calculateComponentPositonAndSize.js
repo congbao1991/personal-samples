@@ -162,10 +162,9 @@ function calculateTop(style, curPositon, proportion, needLockProportion, pointIn
         x: curPoint.x,
         y: rotatedcurPositon.y,
     }, curPoint, style.rotate)
-  
+    
     // 勾股定理
     let newHeight = Math.sqrt((rotatedTopMiddlePoint.x - symmetricPoint.x) ** 2 + (rotatedTopMiddlePoint.y - symmetricPoint.y) ** 2)
-    
     if (newHeight > 0) {
         const newCenter = {
             x: rotatedTopMiddlePoint.x - (rotatedTopMiddlePoint.x - symmetricPoint.x) / 2,
@@ -182,6 +181,8 @@ function calculateTop(style, curPositon, proportion, needLockProportion, pointIn
         style.height = Math.round(newHeight)
         style.top = Math.round(newCenter.y - (newHeight / 2))
         style.left = Math.round(newCenter.x - (style.width / 2))
+
+        console.log(style)
     }
 }
   
