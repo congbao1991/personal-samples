@@ -1,7 +1,6 @@
 // 公共样式
 export const commonStyle = {
   rotate: 0,
-  opacity: 1,
 }
 
 export const commonAttr = {
@@ -17,14 +16,12 @@ let COMPONENT_LIST =
     {
       name: 'antd-button',
       label: '按钮',
-      propValue: '按钮',
       antdProps: {},
       style: {
         width: 80,
         height: 32,
         fontSize: 14,
         fontWeight: 500,
-        lineHeight: '',
         letterSpacing: 0,
         textAlign: '',
         color: '',
