@@ -11,19 +11,34 @@ export const commonAttr = {
 }
 
 let COMPONENT_LIST =
-
   [
     {
       name: 'antd-button',
       label: '按钮',
-      antdProps: {},
+      antdProps: {
+        type: 'default',
+        shape: 'default',
+      },
       style: {
         width: 80,
         height: 32,
         fontSize: 14,
         fontWeight: 500,
         letterSpacing: 0,
-        textAlign: '',
+        color: '',
+      },
+    },
+    {
+      name: 'antd-card',
+      label: '卡片',
+      antdProps: {
+      },
+      style: {
+        width: 250,
+        height: 250,
+        fontSize: 14,
+        fontWeight: 500,
+        letterSpacing: 0,
         color: '',
       },
     }

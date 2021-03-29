@@ -1,36 +1,56 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { Form, Input } from 'antd';
+import { useSelector, useDispatch } from 'react-redux'
+import { Form } from 'antd';
 
 import Hidden from '@/components/Hidden'
-import AntdPropsFormItems from './AntdPropsFormItems'
+import ButtonPropsFormItems from './ButtonPropsFormItems'
 import StyleFormItems from './StyleFormItems'
+import { updateComponent } from '@/store/actions'
 import './index.less'
 
 function AttrList(props) {
   const [form] = Form.useForm();
   const crud = useSelector(state => state.crud)
+  const dispatch = useDispatch()
 
   let styleKeys = []
-  let atndPropsKeys = []
+  let antdPropsKeys = []
+  let initialValues = {}
 
   const init = () => {
     if (!crud.curComponentID) return;
     const curComponent = crud.componentList.find(com => com.id == crud.curComponentID)
     if (!curComponent) {
       styleKeys = []
-      atndPropsKeys = []
+      antdPropsKeys = []
     } else {
       styleKeys = [...Object.keys(curComponent.style)].filter(key => key !== 'rotate')
-      atndPropsKeys = [...Object.keys(curComponent.antdProps)]
+      antdPropsKeys = [...Object.keys(curComponent.antdProps)]
     }
+    initialValues = {
+      ...curComponent.antdProps,
+      ...curComponent.style
+    }
+
+    // 切换组件更新值的时候，防止报警告，加了个延时
+    setTimeout(() => {
+      form.setFieldsValue(initialValues)
+    })
   }
 
   init()
 
-  const onFormLayoutChange = e => {
-    console.log(form.getFieldsValue())
-    console.log(e)
+  const onValuesChange = e => {
+    let values = form.getFieldsValue();
+    let style = {};
+    let antdProps = {};
+    styleKeys.forEach(key => {
+      style[key] = Number(values[key])
+    })
+    antdPropsKeys.forEach(key => {
+      antdProps[key] = values[key]
+    })
+    dispatch(updateComponent({ style, antdProps }))
   }
 
   return (
@@ -40,10 +60,11 @@ function AttrList(props) {
         <Form
           layout="vertical"
           form={form}
-          onValuesChange={onFormLayoutChange}
+          initialValues={initialValues}
+          onValuesChange={onValuesChange}
         >
+          <ButtonPropsFormItems antdPropsKeys={antdPropsKeys} />
           <StyleFormItems styleKeys={styleKeys} />
-          <AntdPropsFormItems atndPropsKeys={atndPropsKeys} />
         </Form>
       </Hidden>
     </div>

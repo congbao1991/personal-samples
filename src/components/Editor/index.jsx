@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Button } from 'antd'
+import { Button, Card } from 'antd'
 
 import { deepCopy } from '@/utils'
 import COMPONENT_LIST from '@/constants/components'
@@ -8,13 +8,16 @@ import generateID from '@/utils/generateID'
 import { addComponent } from '@/store/actions'
 import Grid from '@/components/Grid'
 import Shape from '@/components/shape'
-
+import ComponentWrapper from '@/components/ComponentWrapper'
 
 import './index.less'
+
+const { Meta } = Card;
 
 function Editor(props) {
 
   const componentList = useSelector(state => state.crud.componentList)
+  const previewStatus = useSelector(state => state.crud.previewStatus)
 
   const dispatch = useDispatch()
 
@@ -37,21 +40,51 @@ function Editor(props) {
     // this.$store.commit('recordSnapshot')
   }
 
+  const exChangeWrapper = (component, attr) => {
+    if (previewStatus) {
+      return (
+        <ComponentWrapper key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
+          {component}
+        </ComponentWrapper>
+      )
+    } else {
+      return (
+        <Shape key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
+          {component}
+        </Shape>
+      )
+    }
+  }
 
   const generateComponents = () => {
     return componentList.map(com => {
+      const { top, left, ...rest } = com.style
+      let component = null
       switch (com.name) {
         case 'antd-button':
-          const { top, left, ...rest } = com.style
-          return (
-            <Shape key={com.id} id={com.id} width={com.style.width} height={com.style.height} style={{ top, left }}>
-              <Button
-                {...com.antdProps}
-                style={rest}>
-                {com.label}
-              </Button>
-            </Shape>
+          component = (
+            <Button
+              {...com.antdProps}
+              style={rest}>
+              {com.label}
+            </Button>
           )
+          return exChangeWrapper(component, com)
+        case 'antd-card':
+          let component = (
+            <Card
+              cover={
+                <img
+                  alt="example"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                />
+              }
+              {...com.antdProps}
+              style={rest}>
+              <Meta title="Europe Street beat" description="www.instagram.com" />
+            </Card>
+          )
+          return exChangeWrapper(component, com)
         default:
           return null
       }
