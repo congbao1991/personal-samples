@@ -28,7 +28,7 @@ let COMPONENT_LIST =
         fontSize: 14,
         fontWeight: 500,
         letterSpacing: 0,
-        color: '',
+        color: 'rgba(0, 0, 0, 1)',
       },
     },
     {
@@ -42,7 +42,7 @@ let COMPONENT_LIST =
         fontSize: 14,
         fontWeight: 500,
         letterSpacing: 0,
-        color: '',
+        color: 'rgba(255, 255, 255, 1)',
       },
     }
   ]

@@ -42,10 +42,18 @@ function AttrList(props) {
 
   const onValuesChange = e => {
     let values = form.getFieldsValue();
+    console.log(values)
     let style = {};
     let antdProps = {};
     styleKeys.forEach(key => {
-      style[key] = Number(values[key])
+      switch (key) {
+        case 'color':
+          style[key] = values[key]
+          break;
+        default:
+          style[key] = Number(values[key])
+          break;
+      }
     })
     antdPropsKeys.forEach(key => {
       antdProps[key] = values[key]
