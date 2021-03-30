@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Button, Card } from 'antd'
+import { Button, Card, Modal } from 'antd'
 
 import { deepCopy } from '@/utils'
 import COMPONENT_LIST from '@/constants/components'
@@ -8,6 +8,7 @@ import generateID from '@/utils/generateID'
 import { addComponent } from '@/store/actions'
 import Grid from '@/components/Grid'
 import Shape from '@/components/shape'
+import Hidden from '@/components/Hidden'
 import ComponentWrapper from '@/components/ComponentWrapper'
 
 import './index.less'
@@ -56,6 +57,24 @@ function Editor(props) {
     }
   }
 
+  const onEventsTrigger = (e, component) => {
+    e.preventDefault()
+    if (!component.events.content) {
+      return
+    }
+
+    switch (component.events.eventType) {
+      case 'alert':
+        Modal.info({ content: component.events.content });
+        break;
+      case 'link':
+        window.open(component.events.content)
+        break;
+      default:
+        break;
+    }
+  }
+
   const generateComponents = () => {
     return componentList.map(com => {
       const { top, left, ...rest } = com.style
@@ -65,14 +84,16 @@ function Editor(props) {
           component = (
             <Button
               {...com.antdProps}
+              onClick={(e) => { onEventsTrigger(e, com) }}
               style={rest}>
               {com.label}
             </Button>
           )
           return exChangeWrapper(component, com)
         case 'antd-card':
-          let component = (
+          component = (
             <Card
+              onClick={(e) => { onEventsTrigger(e, com) }}
               cover={
                 <img
                   alt="example"
@@ -99,7 +120,9 @@ function Editor(props) {
         onDragOver={onDragOver}
         onDrop={onDrop}
       >
-        <Grid />
+        <Hidden visible={!previewStatus}>
+          <Grid />
+        </Hidden>
         {generateComponents()}
       </div>
     </div>

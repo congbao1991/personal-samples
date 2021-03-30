@@ -23,10 +23,11 @@ export default (state = initialState, { type, payload }) => {
       return newState;
     case UPDATE_COMPONENT_SUCC:
       newState = JSON.parse(JSON.stringify(state));
-      const { style, antdProps } = payload
+      const { style, antdProps, events } = payload
       const index = newState.componentList.findIndex(component => component.id == newState.curComponentID);
-      newState.componentList[index].style = Object.assign({}, newState.componentList[index].style, style)
-      newState.componentList[index].antdProps = Object.assign({}, newState.componentList[index].antdProps, antdProps)
+      newState.curComponentID && (newState.componentList[index].style = Object.assign({}, newState.componentList[index].style, style))
+      newState.curComponentID && (newState.componentList[index].antdProps = Object.assign({}, newState.componentList[index].antdProps, antdProps))
+      newState.curComponentID && (newState.componentList[index].events = Object.assign({}, newState.componentList[index].events, events))
       return newState;
     default:
       return state;

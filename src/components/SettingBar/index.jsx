@@ -3,6 +3,7 @@ import { Tabs } from 'antd';
 
 import './index.less'
 import AttrList from './AttrList'
+import EventList from './EventList'
 
 const { TabPane } = Tabs;
 
@@ -18,7 +19,7 @@ function SettingBar(props) {
           Content of Tab Pane 2
         </TabPane>
         <TabPane tab="事件" key="3">
-          Content of Tab Pane 3
+          <EventList />
         </TabPane>
       </Tabs>
     </div>
