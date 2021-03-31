@@ -42,7 +42,6 @@ function AttrList(props) {
 
   const onValuesChange = e => {
     let values = form.getFieldsValue();
-    console.log(values)
     let style = {};
     let antdProps = {};
     styleKeys.forEach(key => {
