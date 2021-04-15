@@ -27,6 +27,18 @@ function AnimateList(props) {
     setAnimates(anis)
   }
 
+  // 移除全部预览动画
+  const removeAnimate = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    let anis = JSON.parse(JSON.stringify(animates))
+    // 先把所有的状态设置为false,后续再把悬浮的目标加上动画class
+    anis.forEach(item => {
+      item.show = false
+    })
+    setAnimates(anis)
+  }
+
   // 更新组件动画列表
   const updateCompAnimate = (e, item) => {
     e.preventDefault()
@@ -39,7 +51,7 @@ function AnimateList(props) {
   }
 
   return (
-    <div className="animate-list-container">
+    <div className="animate-list-container" onMouseLeave={(e) => {removeAnimate(e)}}>
       <Hidden visible={!curComponentID}>请选择组件</Hidden>
       <Hidden visible={curComponentID}>
         {
