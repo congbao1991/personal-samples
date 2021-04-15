@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@congbao/time-period-selector": "^1.0.5",
+    "animate.css": "^4.1.1",
     "antd": "^4.7.3",
     "axios": "^0.21.0",
     "classname": "^0.0.0",

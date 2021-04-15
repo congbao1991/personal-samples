@@ -4,11 +4,11 @@ import { Tabs } from 'antd';
 import './index.less'
 import AttrList from './AttrList'
 import EventList from './EventList'
+import AnimateList from './AnimateList'
 
 const { TabPane } = Tabs;
 
 function SettingBar(props) {
-
   return (
     <div className="setting-bar">
       <Tabs defaultActiveKey="1">
@@ -16,7 +16,7 @@ function SettingBar(props) {
           <AttrList />
         </TabPane>
         <TabPane tab="动画" key="2">
-          Content of Tab Pane 2
+          <AnimateList />
         </TabPane>
         <TabPane tab="事件" key="3">
           <EventList />

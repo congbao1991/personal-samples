@@ -44,13 +44,13 @@ function Editor(props) {
   const exChangeWrapper = (component, attr) => {
     if (previewStatus) {
       return (
-        <ComponentWrapper key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
+        <ComponentWrapper instance={attr} key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
           {component}
         </ComponentWrapper>
       )
     } else {
       return (
-        <Shape key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
+        <Shape instance={attr} key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
           {component}
         </Shape>
       )

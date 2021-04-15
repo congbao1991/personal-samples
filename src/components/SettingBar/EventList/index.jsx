@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Form, Radio, Input } from 'antd'
 
 import { updateComponent } from '@/store/actions'
+import Hidden from '@/components/Hidden'
 import './index.less'
 
 const { TextArea } = Input;
@@ -15,7 +16,7 @@ function EventList(props) {
 
 
   const onValuesChange = (e, form) => {
-    dispatch(updateComponent({events: form}))
+    dispatch(updateComponent({ events: form }))
   }
 
   const init = () => {
@@ -32,21 +33,24 @@ function EventList(props) {
 
   return (
     <div className="event-list">
-      <Form
-        form={form}
-        layout="vertical"
-        onValuesChange={onValuesChange}
-      >
-        <Form.Item label="类型" name="eventType">
-          <Radio.Group>
-            <Radio.Button value="link">跳转链接</Radio.Button>
-            <Radio.Button value="alert">弹窗提示</Radio.Button>
-          </Radio.Group>
-        </Form.Item>
-        <Form.Item label="跳转地址或弹窗内容" name="content">
-          <TextArea rows={4} />
-        </Form.Item>
-      </Form>
+      <Hidden visible={!crud.curComponentID}>请选择组件</Hidden>
+      <Hidden visible={crud.curComponentID}>
+        <Form
+          form={form}
+          layout="vertical"
+          onValuesChange={onValuesChange}
+        >
+          <Form.Item label="类型" name="eventType">
+            <Radio.Group>
+              <Radio.Button value="link">跳转链接</Radio.Button>
+              <Radio.Button value="alert">弹窗提示</Radio.Button>
+            </Radio.Group>
+          </Form.Item>
+          <Form.Item label="跳转地址或弹窗内容" name="content">
+            <TextArea rows={4} />
+          </Form.Item>
+        </Form>
+      </Hidden>
     </div>
   )
 }
