@@ -5,7 +5,7 @@ import { Button } from 'antd'
 import { updatePreviewStatus } from '@/store/actions'
 import './index.less'
 
-function ToolBar(props) {
+function ToolBar() {
 
   const previewStatus = useSelector(state => state.crud.previewStatus)
   const dispatch = useDispatch()

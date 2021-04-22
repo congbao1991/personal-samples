@@ -1,7 +1,7 @@
 import React from 'react'
-import { Form, Select } from 'antd';
+import { Form, Select } from 'antd'
 
-const { Option } = Select;
+const { Option } = Select
 
 const keysMap = {
   type: '按钮类型',
@@ -21,21 +21,19 @@ const TYPE_OPTIONS = [
 const SHAPE_OPTIONS = [
   { label: 'circle', value: 'circle ' },
   { label: 'round', value: 'round ' },
-  { label: 'default', value: 'default'}
+  { label: 'default', value: 'default' }
 ]
 
 function ButtonPropsFormItems(props) {
-  const generateFormItems = (key) => {
+  const generateFormItems = key => {
     switch (key) {
       case 'type':
         return (
           <Select>
             {
-              TYPE_OPTIONS.map(opt => {
-                return (
-                  <Option key={opt.value} value={opt.value}>{opt.label}</Option>
-                )
-              })
+              TYPE_OPTIONS.map(opt => (
+                <Option key={opt.value} value={opt.value}>{opt.label}</Option>
+              ))
             }
           </Select>
         )
@@ -43,24 +41,22 @@ function ButtonPropsFormItems(props) {
         return (
           <Select>
             {
-              SHAPE_OPTIONS.map(opt => {
-                return (
-                  <Option key={opt.value} value={opt.value}>{opt.label}</Option>
-                )
-              })
+              SHAPE_OPTIONS.map(opt => (
+                <Option key={opt.value} value={opt.value}>{opt.label}</Option>
+              ))
             }
           </Select>
         )
+      default:
+        return null
     }
   }
 
-  return props.antdPropsKeys.map(key => {
-    return (
-      <Form.Item key={key} label={keysMap[key]} name={key}>
-        {generateFormItems(key)}
-      </Form.Item>
-    )
-  })
+  return props.antdPropsKeys.map(key => (
+    <Form.Item key={key} label={keysMap[key]} name={key}>
+      {generateFormItems(key)}
+    </Form.Item>
+  ))
 }
 
 export default ButtonPropsFormItems

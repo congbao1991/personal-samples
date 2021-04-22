@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button, Card, Modal } from 'antd'
-
 import { deepCopy } from '@/utils'
 import COMPONENT_LIST from '@/constants/components'
 import generateID from '@/utils/generateID'
@@ -13,9 +12,9 @@ import ComponentWrapper from '@/components/ComponentWrapper'
 
 import './index.less'
 
-const { Meta } = Card;
+const { Meta } = Card
 
-function Editor(props) {
+function Editor() {
 
   const componentList = useSelector(state => state.crud.componentList)
   const previewStatus = useSelector(state => state.crud.previewStatus)
@@ -32,7 +31,7 @@ function Editor(props) {
     e.stopPropagation()
     const component = deepCopy(COMPONENT_LIST[e.dataTransfer.getData('index')])
     if (!component) {
-      return;
+      return
     }
     component.style.top = e.nativeEvent.offsetY
     component.style.left = e.nativeEvent.offsetX
@@ -48,13 +47,12 @@ function Editor(props) {
           {component}
         </ComponentWrapper>
       )
-    } else {
-      return (
-        <Shape instance={attr} key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
-          {component}
-        </Shape>
-      )
     }
+    return (
+      <Shape instance={attr} key={attr.id} id={attr.id} width={attr.style.width} height={attr.style.height} style={{ top: attr.style.top, left: attr.style.left }}>
+        {component}
+      </Shape>
+    )
   }
 
   const onEventsTrigger = (e, component) => {
@@ -66,17 +64,17 @@ function Editor(props) {
     switch (component.events.eventType) {
       case 'alert':
         Modal.info({ content: component.events.content });
-        break;
+        break
       case 'link':
         window.open(component.events.content)
-        break;
+        break
       default:
-        break;
+        break
     }
   }
 
-  const generateComponents = () => {
-    return componentList.map(com => {
+  const generateComponents = () => (
+    componentList.map(com => {
       const { top, left, ...rest } = com.style
       let component = null
       switch (com.name) {
@@ -84,7 +82,7 @@ function Editor(props) {
           component = (
             <Button
               {...com.antdProps}
-              onClick={(e) => { onEventsTrigger(e, com) }}
+              onClick={e => onEventsTrigger(e, com)}
               style={rest}>
               {com.label}
             </Button>
@@ -93,12 +91,14 @@ function Editor(props) {
         case 'antd-card':
           component = (
             <Card
-              onClick={(e) => { onEventsTrigger(e, com) }}
+              onClick={e => onEventsTrigger(e, com)}
               cover={
-                <img
-                  alt="example"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                />
+                (
+                  <img
+                    alt="example"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  />
+                )
               }
               {...com.antdProps}
               style={rest}>
@@ -110,7 +110,7 @@ function Editor(props) {
           return null
       }
     })
-  }
+  )
 
   return (
     <div className="editor-container">

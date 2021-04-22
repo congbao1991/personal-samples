@@ -13,39 +13,37 @@ export const commonAttr = {
   isLock: false, // 是否锁定组件
 }
 
-let COMPONENT_LIST =
-  [
-    {
-      name: 'antd-button',
-      label: '按钮',
-      antdProps: {
-        type: 'default',
-        shape: 'default',
-      },
-      style: {
-        width: 80,
-        height: 32,
-        fontSize: 14,
-        fontWeight: 500,
-        letterSpacing: 0,
-        color: 'rgba(0, 0, 0, 1)',
-      },
+const COMPONENT_LIST = [
+  {
+    name: 'antd-button',
+    label: '按钮',
+    antdProps: {
+      type: 'default',
+      shape: 'default',
     },
-    {
-      name: 'antd-card',
-      label: '卡片',
-      antdProps: {
-      },
-      style: {
-        width: 250,
-        height: 250,
-        fontSize: 14,
-        fontWeight: 500,
-        letterSpacing: 0,
-        color: 'rgba(255, 255, 255, 1)',
-      },
-    }
-  ]
+    style: {
+      width: 80,
+      height: 32,
+      fontSize: 14,
+      fontWeight: 500,
+      letterSpacing: 0,
+      color: 'rgba(0, 0, 0, 1)',
+    },
+  },
+  {
+    name: 'antd-card',
+    label: '卡片',
+    antdProps: {
+    },
+    style: {
+      width: 250,
+      height: 250,
+      fontSize: 14,
+      fontWeight: 500,
+      letterSpacing: 0
+    },
+  }
+]
 
 for (let i = 0, len = COMPONENT_LIST.length; i < len; i++) {
   const item = COMPONENT_LIST[i]

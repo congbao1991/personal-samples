@@ -1,15 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Form } from 'antd';
-
+import { Form } from 'antd'
 import Hidden from '@/components/Hidden'
+import { updateComponent } from '@/store/actions'
 import ButtonPropsFormItems from './ButtonPropsFormItems'
 import StyleFormItems from './StyleFormItems'
-import { updateComponent } from '@/store/actions'
 import './index.less'
 
-function AttrList(props) {
-  const [form] = Form.useForm();
+function AttrList() {
+  const [form] = Form.useForm()
   const crud = useSelector(state => state.crud)
   const dispatch = useDispatch()
 
@@ -18,8 +17,8 @@ function AttrList(props) {
   let initialValues = {}
 
   const init = () => {
-    if (!crud.curComponentID) return;
-    const curComponent = crud.componentList.find(com => com.id == crud.curComponentID)
+    if (!crud.curComponentID) return
+    const curComponent = crud.componentList.find(com => com.id === crud.curComponentID)
     if (!curComponent) {
       styleKeys = []
       antdPropsKeys = []
@@ -40,18 +39,18 @@ function AttrList(props) {
 
   init()
 
-  const onValuesChange = e => {
-    let values = form.getFieldsValue();
-    let style = {};
-    let antdProps = {};
+  const onValuesChange = () => {
+    const values = form.getFieldsValue()
+    const style = {}
+    const antdProps = {}
     styleKeys.forEach(key => {
       switch (key) {
         case 'color':
           style[key] = values[key]
-          break;
+          break
         default:
           style[key] = Number(values[key])
-          break;
+          break
       }
     })
     antdPropsKeys.forEach(key => {

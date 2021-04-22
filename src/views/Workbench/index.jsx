@@ -10,20 +10,18 @@ import SettingBar from '@/components/SettingBar'
 import './index.less'
 
 const mapStateToProps = state => {
-  let { crud } = state
+  const { crud } = state
   return crud
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCurComponentID: (payload) => dispatch(setCurComponentID(payload))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  setCurComponentID: payload => dispatch(setCurComponentID(payload))
+})
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Workbench extends Component {
 
-  onEditorMouseDown = _ => {
+  onEditorMouseDown = () => {
     this.props.setCurComponentID({ id: null })
   }
 

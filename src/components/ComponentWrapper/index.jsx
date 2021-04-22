@@ -10,14 +10,14 @@ function ComponentWrapper(props) {
   let animateClass = null
 
   function init() {
-    let animations = props.instance.animations
-    animateClass = 'animate__' + animations[0]
+    const animations = props.instance.animations
+    animateClass = `animate__${animations[0]}`
   }
 
   init()
 
   return (
-    <div className={cs("component-wrapper", animateClass)} style={props.style}>
+    <div className={cs('component-wrapper', animateClass)} style={props.style}>
       {props.children}
     </div>
   )

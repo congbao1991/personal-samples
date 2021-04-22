@@ -12,7 +12,7 @@ function Shape(props) {
   const [cursors, setCursors] = useState(null)
   const dispatch = useDispatch()
   const curComponentID = useSelector(state => state.crud.curComponentID)
-  const editor = document.querySelector('#editor');
+  const editor = document.querySelector('#editor')
 
   // 监听鼠标按下事件
   const onShapeMouseDown = e => {
@@ -22,25 +22,25 @@ function Shape(props) {
 
     dispatch(setCurComponentID({ id: props.id }))
     // 记录鼠标起始位置
-    let startX = e.clientX;
-    let startY = e.clientY;
+    const startX = e.clientX
+    const startY = e.clientY
 
     // 获取元素的起始位置
     const { style } = props
-    let startTop = Number(style.top);
-    let startLeft = Number(style.left);
+    const startTop = Number(style.top)
+    const startLeft = Number(style.left)
 
     const move = moveEvent => {
 
-      let curX = moveEvent.clientX;
-      let curY = moveEvent.clientY;
+      const curX = moveEvent.clientX
+      const curY = moveEvent.clientY
 
-      let top = curY - startY + startTop
-      let left = curX - startX + startLeft
+      const top = curY - startY + startTop
+      const left = curX - startX + startLeft
 
-      let pos = {}
-      pos.top = top < 0 ? 0 : top;
-      pos.left = left < 0 ? 0 : left;
+      const pos = {}
+      pos.top = top < 0 ? 0 : top
+      pos.left = left < 0 ? 0 : left
 
       dispatch(updateComponent({ style: pos }))
     }
@@ -60,7 +60,7 @@ function Shape(props) {
 
     const { width, height, style } = props
 
-    let calculateStyle = { ...style }
+    const calculateStyle = { ...style }
     // 组件宽高比
     const proportion = width / height
 
@@ -91,7 +91,7 @@ function Shape(props) {
 
     const needLockProportion = false
 
-    const move = (moveEvent) => {
+    const move = moveEvent => {
       // 第一次点击时也会触发 move，所以会有“刚点击组件但未移动，组件的大小却改变了”的情况发生
       // 因此第一次点击时不触发 move 事件
       if (isFirst) {
@@ -173,7 +173,7 @@ function Shape(props) {
         }
 
         if (angleLimit.start <= angle && angle < angleLimit.end) {
-          result[point] = angleLimit.cursor + '-resize'
+          result[point] = `${angleLimit.cursor}-resize`
           return
         }
       }
@@ -188,7 +188,7 @@ function Shape(props) {
 
   const getPointStyle = point => {
     if (!cursors) {
-      return;
+      return
     }
     const { width, height } = props
     const hasT = /t/.test(point)
@@ -227,18 +227,16 @@ function Shape(props) {
   }
 
   // 生成改变组件大小圆点
-  const generatePoints = () => {
-    return pointList.map(point => {
-      return (
-        <Hidden key={point} visible={curComponentID == props.id}>
-          <div className="shape-point" onMouseDown={(e) => onPointMouseDown(e, point)} style={getPointStyle(point)}></div>
-        </Hidden>
-      )
-    })
-  }
+  const generatePoints = () => (
+    pointList.map(point => (
+      <Hidden key={point} visible={curComponentID === props.id}>
+        <div className="shape-point" onMouseDown={e => onPointMouseDown(e, point)} style={getPointStyle(point)}></div>
+      </Hidden>
+    ))
+  )
 
   return (
-    <div className={cs('shape', { actived: curComponentID == props.id })} onMouseDown={onShapeMouseDown} style={props.style}>
+    <div className={cs('shape', { actived: curComponentID === props.id })} onMouseDown={onShapeMouseDown} style={props.style}>
       {generatePoints()}
       {props.children}
     </div>

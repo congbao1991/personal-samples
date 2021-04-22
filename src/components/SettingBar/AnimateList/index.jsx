@@ -8,7 +8,7 @@ import Hidden from '@/components/Hidden'
 import { updateComponent } from '@/store/actions'
 import './index.less'
 
-function AnimateList(props) {
+function AnimateList() {
   const [animates, setAnimates] = useState(animations)
   const curComponentID = useSelector(state => state.crud.curComponentID)
   const dispatch = useDispatch()
@@ -17,21 +17,21 @@ function AnimateList(props) {
   const addAnimate = (e, animate) => {
     e.preventDefault()
     e.stopPropagation()
-    let anis = JSON.parse(JSON.stringify(animates))
+    const anis = JSON.parse(JSON.stringify(animates))
     // 先把所有的状态设置为false,后续再把悬浮的目标加上动画class
     anis.forEach(item => {
       item.show = false
     })
-    let index = anis.findIndex(i => i.value === animate.value)
+    const index = anis.findIndex(i => i.value === animate.value)
     anis[index].show = true
     setAnimates(anis)
   }
 
   // 移除全部预览动画
-  const removeAnimate = (e) => {
+  const removeAnimate = e => {
     e.preventDefault()
     e.stopPropagation()
-    let anis = JSON.parse(JSON.stringify(animates))
+    const anis = JSON.parse(JSON.stringify(animates))
     // 先把所有的状态设置为false,后续再把悬浮的目标加上动画class
     anis.forEach(item => {
       item.show = false
@@ -43,29 +43,27 @@ function AnimateList(props) {
   const updateCompAnimate = (e, item) => {
     e.preventDefault()
     e.stopPropagation()
-    let animations = []
+    const anis = []
     if (item.value) {
-      animations.push(item.value)
+      anis.push(item.value)
     }
-    dispatch(updateComponent({ animations }))
+    dispatch(updateComponent({ animations: anis }))
   }
 
   return (
-    <div className="animate-list-container" onMouseLeave={(e) => {removeAnimate(e)}}>
+    <div className="animate-list-container" onMouseLeave={(e) => { removeAnimate(e) }}>
       <Hidden visible={!curComponentID}>请选择组件</Hidden>
       <Hidden visible={curComponentID}>
         {
-          animates.map(item => {
-            return (
-              <Tag
-                onMouseEnter={(e) => { addAnimate(e, item) }}
-                onClick={(e) => { updateCompAnimate(e, item) }}
-                className={cs("animate-tag", { ['animate__' + item.value]: item.show })}
-                key={item.value}>
-                {item.label}
-              </Tag>
-            )
-          })
+          animates.map(item => (
+            <Tag
+              onMouseEnter={e => addAnimate(e, item)}
+              onClick={e => updateCompAnimate(e, item)}
+              className={cs('animate-tag', { [`animate__${item.value}`]: item.show })}
+              key={item.value}>
+              {item.label}
+            </Tag>
+          ))
         }
       </Hidden>
     </div>

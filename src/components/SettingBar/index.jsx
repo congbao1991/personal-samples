@@ -1,14 +1,14 @@
 import React from 'react'
-import { Tabs } from 'antd';
+import { Tabs } from 'antd'
 
 import './index.less'
 import AttrList from './AttrList'
 import EventList from './EventList'
 import AnimateList from './AnimateList'
 
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 
-function SettingBar(props) {
+function SettingBar() {
   return (
     <div className="setting-bar">
       <Tabs defaultActiveKey="1">

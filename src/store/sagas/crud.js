@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import { UPDATE_COMPONENT } from '../constants'
 import { updateComponentSucc } from '@/store/actions'
+import { UPDATE_COMPONENT } from '../constants'
 
 
 function* updateComponentSaga({ payload }) {
@@ -14,4 +14,4 @@ function* updateComponentWatcher() {
 }
 export default [
   updateComponentWatcher
-];
+]

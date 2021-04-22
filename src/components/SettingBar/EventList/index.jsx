@@ -6,22 +6,22 @@ import { updateComponent } from '@/store/actions'
 import Hidden from '@/components/Hidden'
 import './index.less'
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
-function EventList(props) {
+function EventList() {
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
   const crud = useSelector(state => state.crud)
   const dispatch = useDispatch()
 
 
-  const onValuesChange = (e, form) => {
-    dispatch(updateComponent({ events: form }))
+  const onValuesChange = (e, events) => {
+    dispatch(updateComponent({ events }))
   }
 
   const init = () => {
-    if (!crud.curComponentID) return;
-    const curComponent = crud.componentList.find(com => com.id == crud.curComponentID)
+    if (!crud.curComponentID) return
+    const curComponent = crud.componentList.find(com => com.id === crud.curComponentID)
 
     // 切换组件更新值的时候，防止报警告，加了个延时
     setTimeout(() => {

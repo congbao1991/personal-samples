@@ -1,8 +1,9 @@
-import Loadable from 'react-loadable';
+import Loadable from 'react-loadable'
 
-const LoadableComponent = (component) => Loadable({
+// eslint-disable-next-line new-cap
+const LoadableComponent = component => Loadable({
   loader: component,
-  loading: ()=>null,
-});
+  loading: () => null,
+})
 
-export default LoadableComponent;
+export default LoadableComponent
