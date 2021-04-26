@@ -1,0 +1,77 @@
+#Dashboard {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+
+  .site-layout-background,
+  .site-layout-header {
+    background-color: #fff;
+  }
+
+  .site-layout-content {
+    margin-top: 64px;
+  }
+
+  .site-layout-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .right-content-wrapper {
+    position: relative;
+  }
+
+  .left-content-wrapper {
+    text-align: center;
+    max-width: 280px !important;
+    flex: 0 0 280px !important;
+    .ant-layout-sider-children {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo {
+      padding: 12px 14px;
+      font-size: 20px;
+      border-top: 1px #00cd96 solid;
+      border-bottom: 1px #00cd96 solid;
+      text-align: center;
+      color: #00cd96;
+      margin: 20px auto;
+      line-height: 1;
+      cursor: pointer;
+      user-select: none;
+      display: inline-block;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .card {
+      overflow: auto;
+      box-shadow: 3px -2px 8px #ccc;
+      border-radius: 4px;
+      flex: 1;
+      margin: 10px 10px 20px;
+      padding-right: 10px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      display: block;
+      border-radius: 50%;
+      margin: 30px auto 20px;
+    }
+    .name {
+      color: #00cd96;
+      font-weight: bold;
+      font-size: 26px;
+    }
+
+    .tags-wrapper {
+      text-align: left;
+      padding-left: 10px;
+    }
+  }
+}

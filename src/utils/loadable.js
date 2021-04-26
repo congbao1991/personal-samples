@@ -1,4 +1,6 @@
+import React from 'react'
 import Loadable from 'react-loadable'
+import { Skeleton } from 'antd'
 
 
 const requireContext = require.context('@/views', true, /\.jsx$/, 'lazy')
@@ -18,7 +20,12 @@ export const Loading = props => {
     return '加载超时'
   }
   if (props.pastDelay) {
-    return '正在加载中...'
+    return (
+      <div style={{padding: '20px 30px'}}>
+        <Skeleton avatar paragraph={{ rows: 6 }} />
+        <Skeleton avatar paragraph={{ rows: 6 }} />
+      </div>
+    )
   }
   return null
 }

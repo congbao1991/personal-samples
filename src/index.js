@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.less'
 import 'animate.css'
 import { Provider } from 'react-redux'
 import App from '@/views/app'

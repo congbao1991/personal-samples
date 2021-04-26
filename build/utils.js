@@ -25,6 +25,14 @@ exports.cssLoaders = function (options) {
         loader: loader + "-loader",
         options: Object.assign({}, loaderOptions, {
           sourceMap: options.sourceMap
+        }, {
+          lessOptions: { // 如果使用less-loader@5，请移除 lessOptions 这一级直接配置选项。
+            modifyVars: {
+              'primary-color': '#00cd96',
+              'link-color': '#00cd96',
+            },
+            javascriptEnabled: true,
+          }
         })
       })
     }

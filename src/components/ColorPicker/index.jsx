@@ -28,7 +28,7 @@ class ColorPicker extends React.Component {
 
   render() {
 
-    const colorValues = this.props.value.match(/\d+/g)
+    const colorValues = this.props.value ? this.props.value.match(/\d+/g) : []
     const colorKeys = 'rgba'
     const color = {}
     colorValues.forEach((c, i) => { color[colorKeys[i]] = c })
