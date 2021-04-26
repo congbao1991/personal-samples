@@ -1,8 +1,8 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 import { Button } from 'antd'
-
 import { updatePreviewStatus } from '@/store/actions'
+import Logo from '@/components/Logo'
 import './index.less'
 
 function ToolBar() {
@@ -16,6 +16,7 @@ function ToolBar() {
 
   return (
     <div className="tool-bar">
+      <Logo></Logo>
       <Button onClick={onUpdatePreviewStatus}>{previewStatus ? '撤销预览' : '预览'}</Button>
     </div>
   )
