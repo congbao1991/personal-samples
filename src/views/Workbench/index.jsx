@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Workbench extends Component {
+class Workbench extends Component {
 
   onEditorMouseDown = () => {
     this.props.setCurComponentID({ id: null })
@@ -46,3 +46,5 @@ export default class Workbench extends Component {
     )
   }
 }
+
+export default Workbench
