@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Tag } from 'antd'
 import cs from 'classname'
-
+import { CheckCircleOutlined } from '@ant-design/icons'
 import animations from '@/constants/animate'
 import Hidden from '@/components/Hidden'
 import { updateComponent } from '@/store/actions'
@@ -11,6 +11,7 @@ import './index.less'
 function AnimateList() {
   const [animates, setAnimates] = useState(animations)
   const curComponentID = useSelector(state => state.crud.curComponentID)
+  const componentList = useSelector(state => state.crud.componentList)
   const dispatch = useDispatch()
 
   // 鼠标悬浮添加预览动画
@@ -50,13 +51,22 @@ function AnimateList() {
     dispatch(updateComponent({ animations: anis }))
   }
 
+  let selectAnimateId = null
+  const currentComponent = componentList.find(com => com.id === curComponentID)
+  console.log('currentComponent', currentComponent)
+  if (currentComponent && currentComponent.animations.length > 0) {
+    selectAnimateId = currentComponent.animations[0]
+  }
+
   return (
-    <div className="animate-list-container" onMouseLeave={(e) => { removeAnimate(e) }}>
+    <div className="animate-list-container" onMouseLeave={e => removeAnimate(e)}>
       <Hidden visible={!curComponentID}>请选择组件</Hidden>
       <Hidden visible={curComponentID}>
         {
           animates.map(item => (
             <Tag
+              icon={selectAnimateId === item.value ? (<CheckCircleOutlined />) : null}
+              color={selectAnimateId === item.value ? 'success' : null}
               onMouseEnter={e => addAnimate(e, item)}
               onClick={e => updateCompAnimate(e, item)}
               className={cs('animate-tag', { [`animate__${item.value}`]: item.show })}

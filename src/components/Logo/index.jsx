@@ -6,7 +6,7 @@ function Logo() {
 
   return (
     <Link to="/">
-      <span id="xiaocong-logo">小葱Blog</span>
+      <span id="xiaocong-logo"></span>
     </Link>
   )
 }
