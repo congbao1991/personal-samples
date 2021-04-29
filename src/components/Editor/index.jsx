@@ -9,6 +9,7 @@ import Grid from '@/components/Grid'
 import Shape from '@/components/Shape'
 import Hidden from '@/components/Hidden'
 import ComponentWrapper from '@/components/ComponentWrapper'
+import Marklines from '@/components/Marklines'
 
 import './index.less'
 
@@ -123,6 +124,7 @@ function Editor() {
         <Hidden visible={!previewStatus}>
           <Grid />
         </Hidden>
+        <Marklines />
         {generateComponents()}
       </div>
     </div>
