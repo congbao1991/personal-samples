@@ -13,7 +13,6 @@ const getComponentPath = path => {
 
 export const Loading = props => {
   if (props.error) {
-    console.log(props.error)
     return `加载错误${props.error}`
   }
   if (props.timedOut) {

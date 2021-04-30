@@ -5,8 +5,6 @@ import './index.less'
 
 function ComponentWrapper(props) {
 
-  console.log(props)
-
   let animateClass = null
 
   function init() {

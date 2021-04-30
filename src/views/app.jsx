@@ -15,6 +15,7 @@ export default class App extends PureComponent {
         <Router>
           <Switch>
             <Route path="/workbench" exact component={loadableComponent('/Workbench/index')}></Route>
+            <Route path="/react-dnd" exact component={loadableComponent('/ReactDnD/index')}></Route>
             <Route path="/" exact component={loadableComponent('/Dashboard/index')}></Route>
           </Switch>
         </Router>
