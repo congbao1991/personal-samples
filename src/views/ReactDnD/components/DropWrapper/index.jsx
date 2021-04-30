@@ -18,7 +18,7 @@ function getStyle(backgroundColor) {
 }
 export const DropWrapper = ({ children, addCard, id }) => {
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
-    accept: [ItemTypes.CARD, 'box'],
+    accept: ItemTypes.CARD,
     drop: (item, monitor) => {
       const didDrop = monitor.didDrop()
       if (didDrop) {

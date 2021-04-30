@@ -93,16 +93,22 @@ function ReactDnD(props) {
     if (wrapperId) {
       if (index === -1) {
         let deleteIndex
-        if (!dragTarget.wrapperId) {
+        if (!dragTarget.id) {
+          console.log(123)
+        } else if (!dragTarget.wrapperId) {
           deleteIndex = arr.findIndex(ca => ca.id === dragTarget.id)
           arr.splice(deleteIndex, 1)
         } else {
           deleteIndex = map[dragTarget.wrapperId].cards.findIndex(ca => ca.id === dragTarget.id)
-          map[dragTarget.wrapperId].cards.splice(deleteIndex, 1)
+          if (deleteIndex >= 0) {
+            map[dragTarget.wrapperId].cards.splice(deleteIndex, 1)
+          }
         }
+        addNum++
+        const tar = dragTarget.id ? Object.assign(dragTarget, { wrapperId }) : { id: `${dragTarget.type}${addNum}`, text: `${dragTarget.type}${addNum}`, type: dragTarget.type, cards: [], wrapperId }
         map[wrapperId].cards = update(targetCards, {
           $splice: [
-            [atIndex, 0, Object.assign(dragTarget, { wrapperId })]
+            [atIndex, 0, tar]
           ]
         })
       } else {
@@ -114,7 +120,15 @@ function ReactDnD(props) {
         })
       }
     } else if (!wrapperId) {
-      if (index === -1) {
+      if (!dragTarget.id) {
+        addNum++
+        const tar = dragTarget.id ? Object.assign(dragTarget, { wrapperId }) : { id: `${dragTarget.type}${addNum}`, text: `${dragTarget.type}${addNum}`, type: dragTarget.type, cards: [], wrapperId }
+        arr = update(targetCards, {
+          $splice: [
+            [atIndex, 0, tar]
+          ]
+        })
+      } else if (index === -1) {
         const deleteIndex = map[dragTarget.wrapperId].cards.findIndex(ca => ca.id === dragTarget.id)
         map[dragTarget.wrapperId].cards.splice(deleteIndex, 1)
         arr = update(targetCards, {
@@ -150,16 +164,13 @@ function ReactDnD(props) {
                 {cards.map(card => {
                   if (card.type === 'C') {
                     return (
-                      <div>
-                        <DragWrapper
-                          key={card.id}
-                          id={`${card.id}`}
-                          moveCard={moveCard}
-                          findCard={findCard}
-                          type={card.type}
-                          text={card.text}
-                        >
-                        </DragWrapper>
+                      <DragWrapper
+                        key={card.id}
+                        id={`${card.id}`}
+                        moveCard={moveCard}
+                        findCard={findCard}
+                        type={card.type}
+                      >
                         <DropWrapper addCard={addCard} id={card.id}>
                           {
                             card.cards.map((item => (
@@ -176,7 +187,7 @@ function ReactDnD(props) {
                             )))
                           }
                         </DropWrapper>
-                      </div>
+                      </DragWrapper>
                     )
                   }
                   return (
