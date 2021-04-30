@@ -10,14 +10,20 @@ const style = {
   cursor: 'move',
   color: 'red'
 };
-export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId, type, cards }) => {
+export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId, type, cards, accept }) => {
   const originalIndex = findCard(id).index
   const [{ isDragging }, drag] = useDrag(() => ({
-    type: ItemTypes.CARD,
+    type: accept || ItemTypes.CARD,
     item: { id, originalIndex, wrapperId, text, type, cards },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
-    })
+    }),
+    end: (item, monitor) => {
+      const didDrop = monitor.didDrop();
+      if (!didDrop) {
+        moveCard(item, originalIndex, wrapperId)
+      }
+    },
   }), [id, originalIndex, moveCard])
   const [{ hovered }, drop] = useDrop(() => ({
     accept: ItemTypes.CARD,
@@ -26,11 +32,11 @@ export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId,
     }),
     drop(item) { // item是拖拽状态目标
       // 如果是复合组件直接返回
+      const { index: overIndex } = findCard(id, wrapperId)
       if (type === 'C') {
-        return
+        moveCard(item, overIndex)
       }
       if (item.id !== id) {
-        const { index: overIndex } = findCard(id, wrapperId)
         moveCard(item, overIndex, wrapperId)
       }
     },

@@ -40,6 +40,9 @@ function ReactDnD(props) {
   }
   const addCard = (item, wrapperId) => {
     const arr = cards.slice()
+    if (item.id && item.id === wrapperId) {
+      return
+    }
     if (!item.id) {
       let c
       if (wrapperId) {
@@ -81,6 +84,9 @@ function ReactDnD(props) {
   }
   const moveCard = (dragTarget, atIndex, wrapperId) => {
     const { card, index } = findCard(dragTarget.id, wrapperId)
+    if (index === atIndex) {
+      return
+    }
     let arr = cards.slice()
     const map = array2Map(arr)
     const targetCards = wrapperId ? map[wrapperId].cards : arr
@@ -144,13 +150,16 @@ function ReactDnD(props) {
                 {cards.map(card => {
                   if (card.type === 'C') {
                     return (
-                      <DragWrapper
-                        key={card.id}
-                        id={`${card.id}`}
-                        moveCard={moveCard}
-                        findCard={findCard}
-                        type={card.type}
-                      >
+                      <div>
+                        <DragWrapper
+                          key={card.id}
+                          id={`${card.id}`}
+                          moveCard={moveCard}
+                          findCard={findCard}
+                          type={card.type}
+                          text={card.text}
+                        >
+                        </DragWrapper>
                         <DropWrapper addCard={addCard} id={card.id}>
                           {
                             card.cards.map((item => (
@@ -167,7 +176,7 @@ function ReactDnD(props) {
                             )))
                           }
                         </DropWrapper>
-                      </DragWrapper>
+                      </div>
                     )
                   }
                   return (

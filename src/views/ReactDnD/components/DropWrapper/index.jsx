@@ -18,10 +18,14 @@ function getStyle(backgroundColor) {
 }
 export const DropWrapper = ({ children, addCard, id }) => {
   const [{ isOver, isOverCurrent }, drop] = useDrop(() => ({
-    accept: ItemTypes.CARD,
+    accept: [ItemTypes.CARD, 'box'],
     drop: (item, monitor) => {
       const didDrop = monitor.didDrop()
       if (didDrop) {
+        return
+      }
+      if (id && item.type === 'C') {
+        alert('不能放这些组件')
         return
       }
       item && addCard(item, id)
