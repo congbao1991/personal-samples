@@ -33,8 +33,7 @@ export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId,
     drop(item) { // item是拖拽状态目标
       // 如果是复合组件直接返回
       const { index: overIndex } = findCard(id, wrapperId)
-      if (type === 'C') {
-        // moveCard(item, overIndex)
+      if (type === 'C' && (item.wrapperId || !item.id)) {
         return
       }
       if (item.id !== id) {
