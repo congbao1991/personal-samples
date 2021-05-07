@@ -87,6 +87,7 @@ function ReactDnD(props) {
     if (index === atIndex) {
       return
     }
+    debugger
     let arr = cards.slice()
     const map = array2Map(arr)
     const targetCards = wrapperId ? map[wrapperId].cards : arr
@@ -169,6 +170,7 @@ function ReactDnD(props) {
                         id={`${card.id}`}
                         moveCard={moveCard}
                         findCard={findCard}
+                        addCard={addCard}
                         type={card.type}
                       >
                         <DropWrapper addCard={addCard} id={card.id}>
@@ -183,6 +185,7 @@ function ReactDnD(props) {
                                 cards={item.cards}
                                 moveCard={moveCard}
                                 findCard={findCard}
+                                addCard={addCard}
                               />
                             )))
                           }
@@ -198,6 +201,7 @@ function ReactDnD(props) {
                       type={card.type}
                       moveCard={moveCard}
                       findCard={findCard}
+                      addCard={addCard}
                       {...card}
                     />
                   )

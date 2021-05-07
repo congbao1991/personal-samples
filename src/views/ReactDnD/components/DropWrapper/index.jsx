@@ -25,6 +25,7 @@ export const DropWrapper = ({ children, addCard, id }) => {
         return
       }
       if (id && item.type === 'C') {
+        console.log(id)
         alert('不能放这些组件')
         return
       }

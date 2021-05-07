@@ -10,7 +10,7 @@ const style = {
   cursor: 'move',
   color: 'red'
 };
-export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId, type, cards }) => {
+export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId, type, cards, addCard }) => {
   const originalIndex = findCard(id).index
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.CARD,
@@ -34,6 +34,7 @@ export const DragWrapper = ({ id, text, moveCard, findCard, children, wrapperId,
       // 如果是复合组件直接返回
       const { index: overIndex } = findCard(id, wrapperId)
       if (type === 'C' && (item.wrapperId || !item.id)) {
+        // addCard(item, wrapperId)
         return
       }
       if (item.id !== id) {
