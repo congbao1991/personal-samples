@@ -1,0 +1,176 @@
+.approval-level-select {
+  width: 171px;
+}
+
+.approval-type-radio {
+  margin-right: 53px;
+}
+
+.approval-type-radio-group {
+  margin-bottom: 25px;
+}
+
+.drawer-title {
+  font-size: 16px;
+  color: #3c414b;
+  margin-bottom: 25px;
+  .sub-title {
+    color: #979797;
+    font-size: 12px;
+  }
+}
+
+.drawer-add-member {
+  width: 134px;
+  height: 40px;
+}
+
+.drawer-add-notify-member {
+  height: 40px;
+  width: 84px;
+  margin-bottom: 24px;
+}
+.drawer-add-notify-condition {
+  width: 112px;
+  height: 40px;
+}
+
+.drawer-header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(236, 239, 244, 1);
+  padding-left: 24px;
+  .left-header {
+    flex: 1;
+  }
+  .edit-title {
+    font-size: 22px;
+    color: #3c414b;
+    vertical-align: middle;
+  }
+  .edit-icon {
+    height: 17px;
+    width: 17px;
+    display: inline-block;
+    cursor: pointer;
+    background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/edit.png")
+      no-repeat center;
+    background-size: 100% 100%;
+    vertical-align: middle;
+  }
+  .priority {
+    float: right;
+  }
+}
+
+.drawer-content-wrapper {
+  padding: 24px;
+  overflow-y: auto;
+  height: 100%;
+  padding-bottom: 200px;
+
+  .ant-checkbox-wrapper {
+    width: 77px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.quit {
+      width:auto;
+      color: #FF5759;
+    }
+
+    & + .ant-checkbox-wrapper {
+      margin-left: 0;
+    }
+  }
+}
+
+.text-split {
+  display: inline-block;
+  width: 110px;
+}
+
+.approval-type-title {
+  border-top: 1px solid rgba(236, 239, 244, 1);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+
+#approval-flow-drawer {
+  .ant-drawer-body {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .button-bar {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    left: 0;
+    bottom: 0;
+    height: 80px;
+    border-top: 1px solid #dbdbdb;
+    align-items: center;
+    flex-direction: row-reverse;
+    background-color: #fff;
+    z-index: 99;
+    .ant-btn {
+      margin-right: 10px;
+    }
+  }
+}
+
+.notify-drawer-appoint-superiors {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  .ant-select-selector {
+    height: 40px !important;
+    width: 171px !important;
+  }
+  .ant-select-selection-item {
+    line-height: 40px !important;
+  }
+}
+
+.condition-edit-close {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/close.png")
+    center no-repeat;
+  background-size: 16px 16px;
+  cursor: pointer;
+}
+
+.setting-member-tips {
+  padding: 16px;
+  background: rgba(239, 246, 255, 1);
+  border-radius:3px;
+
+  .highlight-text,
+  .text,
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon {
+    background: url('https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/%21_blue.png')
+      center no-repeat;
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
+    margin-right: 8px;
+  }
+  .text {
+    color: #3C414B;
+    font-size: 14px;
+  }
+  .highlight-text {
+    color: #3C414B;
+    font-weight: bold;
+  }
+}

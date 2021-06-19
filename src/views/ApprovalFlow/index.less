@@ -1,0 +1,545 @@
+.approvalFlow_frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-width: 100%;
+  padding-top: 72px;
+  .approvalFlow_header {
+    display: flex;
+    height: 72px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 999;
+    .back {
+      width: 50px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .title {
+      display: inline-flex;
+      flex: 1;
+      font-size: 16px;
+      color: #3c414b;
+      padding-left: 106px;
+      justify-content: center;
+      align-items: center;
+    }
+    .approvalFlow_header_btn_bar {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      margin-right: 27px;
+    }
+    .temp-title {
+      display: inline-block;
+      width: 404px;
+      padding: 12px 0;
+      text-align: center;
+      cursor: pointer;
+      .text {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+        color: #3c414b;
+      }
+      .edit-icon {
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/edit.png")
+          center no-repeat;
+        background-size: 100% 100%;
+        margin-top: 2px;
+        display: none;
+      }
+      &:hover {
+        background: rgba(247, 248, 252, 1);
+        border-radius: 3px;
+        .edit-icon {
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .scale-bar {
+    position: fixed;
+    right: 27px;
+    top: 95px;
+    user-select: none;
+    z-index: 99;
+    .ctrl-btn {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #fff;
+      vertical-align: middle;
+      font-size: 30px;
+      margin: 0 12px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 35px;
+    }
+  }
+}
+
+#approvalFlow {
+  display: flex;
+  position: relative;
+  min-height: 100%;
+  .approvalFlow-content-outer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 80px;
+
+    &:before {
+      top: 0;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      background-color: rgba(245, 246, 250, 1);
+    }
+  }
+  .approvalFlow-content {
+    margin-top: 63px;
+    flex: 1;
+    min-height: 100%;
+    position: relative;
+    transform-origin: 50% 0;
+  }
+  .node-box-start {
+    width: 118px;
+    height: 58px;
+    border-radius: 100px;
+    background: #ffffff;
+    text-align: center;
+    line-height: 58px;
+  }
+
+  .node-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    width: 240px;
+    min-height: 92px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    .line-end-arrow {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 4px;
+      border-style: solid;
+      border-width: 8px 5px 4px;
+      border-color: #dbdbdb transparent transparent;
+    }
+    .node-box-warning {
+      position: absolute;
+      right: -27px;
+      top: -6px;
+      img {
+        width: 18px;
+      }
+    }
+    .title {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      border-radius: 4px 4px 0 0;
+      font-family: PingFangSC-Medium;
+      font-size: 14px;
+      padding: 0 14px;
+      .title-text {
+        display: inline-block;
+        max-width: 50%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      padding: 16px 14px;
+      margin-right: 14px;
+      position: relative;
+      &:after {
+        content: "";
+        display: block;
+        height: 16px;
+        width: 16px;
+        position: absolute;
+        right: 8px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/right-arrow.png")
+          no-repeat center;
+        background-size: 100% 100%;
+      }
+
+      &.defaul-condition {
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    .node-title-operate {
+      display: none;
+      text-align: right;
+      flex: 1;
+      flex-direction: row-reverse;
+    }
+    &:hover {
+      .node-title-operate {
+        display: inline-block;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .node-box-approval {
+    border-top: 4px solid rgba(0, 122, 255, 1);
+    .title {
+      background: rgba(239, 246, 255, 1);
+      color: #007aff;
+    }
+  }
+
+  .node-box-financial {
+    border-top: 4px solid #ff5759;
+    .title {
+      background: #fef6f6;
+      color: #f62b2d;
+    }
+  }
+
+  .node-box-notify {
+    border-top: 4px solid #fcad21;
+    .title {
+      background: #fff7eb;
+      color: #ea9600;
+    }
+  }
+
+  .node-box-payment {
+    border-top: 4px solid #4bc712;
+    .title {
+      background: #f5faf3;
+      color: #39b003;
+    }
+    .node-switch {
+      flex: 1;
+      text-align: right;
+      .ant-switch-checked {
+        background-color: #4bc712;
+      }
+    }
+  }
+
+  .node-box-condition {
+    border-top: 4px solid #a7abb7;
+    .title {
+      background: #f1f3f9;
+      color: #898c96;
+    }
+    .node-priority {
+      flex: 1;
+      text-align: right;
+      margin-right: 6px;
+    }
+    &:hover {
+      .node-title-operate {
+        flex: none;
+        flex-grow: none;
+        display: inline-block;
+      }
+    }
+  }
+
+  .node-container {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .add-node-btn-box {
+    width: 240px;
+    display: inline-flex;
+    flex-shrink: 0;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      margin: auto;
+      width: 2px;
+      height: 100%;
+      background-color: #dbdbdb;
+    }
+  }
+
+  .add-node-btn {
+    user-select: none;
+    width: 240px;
+    padding: 35px 0 35px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-grow: 1;
+    .btn {
+      position: relative;
+      outline: none;
+      width: 30px;
+      height: 30px;
+      background-color: #c0c4cc;
+      border-radius: 50%;
+      line-height: 1;
+      cursor: pointer;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      &::before {
+        content: "";
+        display: block;
+        width: 15px;
+        height: 2px;
+        position: absolute;
+        background-color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+      }
+      &::after {
+        content: "";
+        display: block;
+        width: 15px;
+        height: 2px;
+        position: absolute;
+        background-color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) rotate(90deg);
+      }
+    }
+  }
+
+  .branch-wrap {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .branch-wrap-box {
+    display: flex;
+    position: relative;
+  }
+
+  .branch-box {
+    display: flex;
+    min-height: 180px;
+    margin-top: 15px;
+    border-top: 2px solid #dbdbdb;
+    border-bottom: 2px solid #dbdbdb;
+  }
+
+  .add-branch {
+    width: 84px;
+    height: 36px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0px;
+    border-radius: 4px;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #4a94ff;
+    text-align: center;
+    line-height: 36px;
+    z-index: 21;
+    font-family: PingFangSC-Medium;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .col-box {
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    padding: 0 20px;
+    background-color: rgba(245, 246, 250, 1);
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      margin: auto;
+      width: 2px;
+      height: 100%;
+      background-color: #dbdbdb;
+    }
+  }
+
+  .top-left-cover-line {
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    top: -3px;
+    left: -1px;
+    background-color: rgba(245, 246, 250, 1);
+  }
+
+  .bottom-left-cover-line {
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    bottom: -3px;
+    left: -1px;
+    background-color: rgba(245, 246, 250, 1);
+  }
+
+  .top-right-cover-line {
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    top: -2px;
+    right: -1px;
+    background-color: rgba(245, 246, 250, 1);
+  }
+
+  .bottom-right-cover-line {
+    position: absolute;
+    height: 3px;
+    width: 50%;
+    bottom: -2px;
+    right: -1px;
+    background-color: rgba(245, 246, 250, 1);
+  }
+
+  .node-condition {
+    .node-box {
+      display: inline-flex;
+      flex-direction: column;
+      box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      margin-top: 50px;
+      margin-right: 50px;
+      margin-left: 50px;
+
+      .content {
+        display: block;
+      }
+    }
+  }
+
+  .no-condition {
+    color: #ff5759;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    span {
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/%21.png")
+        center no-repeat;
+      background-size: 14px 14px;
+      margin-right: 4px;
+    }
+  }
+
+  .condition-line {
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    span.quit{
+      color: #FF5759;
+    }
+    &>span:not(:last-child)::after {
+      content: ',';
+    }
+
+    &.conditions {
+      color: #70788D
+    }
+  }
+}
+
+.add-button-container {
+  display: inline-block;
+  min-width: 248px;
+}
+.add-button-wrapper {
+  display: inline-block;
+  width: 80px;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 5px 0;
+
+  .icon {
+    display: block;
+    width: 31px;
+    height: 31px;
+    margin: 0 auto;
+    margin-bottom: 6px;
+  }
+
+  span {
+    cursor: pointer;
+  }
+
+  .audit-icon {
+    background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/audit.png")
+      center no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .cc-icon {
+    background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/cc.png")
+      center no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .condition-icon {
+    background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/condition.png")
+      center no-repeat;
+    background-size: 100% 100%;
+  }
+
+  &:hover {
+    background: rgba(247, 248, 252, 1);
+  }
+}

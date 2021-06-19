@@ -18,7 +18,7 @@ function DashboardTimeline() {
         <Link to="/workbench">拖拽组件构建页面Demo</Link>
       </Timeline.Item>
       <Timeline.Item color={randomColor()}>
-        <div>审批流树状可视配置Demo</div>
+        <Link to="/approval-flow">审批流树状可视配置Demo</Link>
       </Timeline.Item>
     </Timeline>
   )

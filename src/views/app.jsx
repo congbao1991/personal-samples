@@ -16,6 +16,7 @@ export default class App extends PureComponent {
           <Switch>
             <Route path="/workbench" exact component={loadableComponent('/Workbench/index')}></Route>
             <Route path="/react-sortable" exact component={loadableComponent('/ReactSortable/index')}></Route>
+            <Route path="/approval-flow" exact component={loadableComponent('/ApprovalFlow/index')}></Route>
             <Route path="/" exact component={loadableComponent('/Dashboard/index')}></Route>
           </Switch>
         </Router>

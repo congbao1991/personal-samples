@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ReactSortable } from 'react-sortablejs';
+import cs from 'classname'
 import { Layout } from 'antd'
 
 import Container from './Components/Container'
@@ -53,6 +54,11 @@ function ReactSortableApp(props) {
     } else {
       setState2(newState)
     }
+    const newComList = JSON.parse(JSON.stringify(componentList))
+    newComList.forEach((i, index) => {
+      index === 2 && (i.disabled = true)
+    })
+    setComponentList(newComList)
   }
 
   const setList = (e, tab) => {
@@ -77,9 +83,9 @@ function ReactSortableApp(props) {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider>
-        <ReactSortable group={{ name: 'formItem', pull: 'clone', put: false }} list={componentList} setList={setComponentList} sort={false}>
+        <ReactSortable group={{ name: 'formItem', pull: 'clone', put: false }} filter=".ignore-elements" list={componentList} setList={setComponentList} sort={false}>
           {componentList.map((item, index) => (
-            <div data-id={item.name} style={{ padding: 2, background: '#fff', color: 'red', marginBottom: 10 }} key={index}>{item.name}</div>
+            <div data-id={item.name} className={cs({ 'ignore-elements': item.disabled })} style={{ padding: 2, background: '#fff', color: 'red', marginBottom: 10 }} key={index}>{item.name}</div>
           ))}
         </ReactSortable>
       </Sider>

@@ -15,7 +15,7 @@ function Dashboard(props) {
       <Sider
         className="site-layout-background left-content-wrapper"
       >
-        <div className="logo">小葱Blog</div>
+        <div className="logo">&nbsp;&nbsp;&nbsp;随笔&nbsp;&nbsp;&nbsp;</div>
         <div className="card">
           <img className="avatar" src={Avatar} alt="" />
           <div className="name">O L</div>

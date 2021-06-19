@@ -1,0 +1,270 @@
+.condition-edit-mem-sel {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 3px;
+  border: 1px solid #d9d9d9;
+  min-height: 38px;
+  line-height: 38px;
+  color: #007aff;
+  flex: 1;
+  padding: 0 8px;
+  cursor: pointer;
+  &:hover {
+    border-color: #007aff;
+  }
+}
+
+.condition-edit-member-styl {
+  font-size: 14px;
+  color: #3c414b;
+  padding: 7px 8px;
+  background: rgba(239, 246, 255, 1);
+  border-radius: 3px;
+  margin-right: 8px;
+  display: inline-block;
+  line-height: 1;
+  .condition-edit-item-content {
+    margin-right: 4px;
+    &.quit {
+      color: #FF5759;
+    }
+  }
+  .anticon-close {
+    color: #999;
+    font-size: 10px;
+    &:hover {
+      color: #666;
+    }
+  }
+}
+
+.condition-edit-drawer_contailer {
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  .priority {
+    width: 100px;
+  }
+
+  .add-condition {
+    width: 112px;
+    height: 40px;
+  }
+
+  
+
+  .ant-select-selector {
+    min-height: 40px !important;
+    border: 1px solid rgba(236, 239, 244, 1);
+    .ant-select-selection-item,
+    .ant-select-selection-placeholder {
+      line-height: 40px;
+    }
+  }
+  .ant-select-multiple .ant-select-selector .ant-select-selection-item {
+    height: 30px;
+    .ant-select-selection-item-content {
+      line-height: 30px;
+    }
+    .ant-select-selection-item-remove {
+      line-height: 26px;
+    }
+  }
+  .ant-select-arrow {
+    top: 20px !important;
+  }
+
+  .double-input-inline {
+    width: 47%;
+    padding: 8px 11px;
+  }
+
+  .single-input {
+    padding: 8px 11px;
+  }
+  .input-split {
+    width: 6%;
+    display: inline-block;
+    text-align: center;
+  }
+}
+
+.condition-type-select {
+  width: 120px !important;
+  margin: 0 8px;
+  margin-left: 0;
+}
+
+.condition-relation-select {
+  width: 110px !important;
+  margin: 0 8px;
+  margin-left: 0;
+}
+
+.condition-edit-modal-container {
+  width: 100%;
+  display: flex;
+  height: 560px;
+  .left-box {
+    flex: 1;
+    padding: 16px 22px;
+    border-right: 1px solid rgba(236, 239, 244, 1);
+    height: 100%;
+    overflow-y: auto;
+  }
+  .right-box {
+    flex: 1;
+    padding: 0 22px;
+    height: 100%;
+    .selected-bar {
+      height: calc(100% - 72px);
+      overflow-y: auto;
+    }
+    .title {
+      padding: 24px 16px;
+      display: flex;
+      justify-content: space-between;
+      .selected {
+        color: #70788d;
+        font-size: 14px;
+        user-select: none;
+      }
+      .delete {
+        color: #007aff;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
+
+    .close-btn {
+      width: 16px;
+      height: 16px;
+      background: url("https://apg-1258944054.cos.ap-guangzhou.myqcloud.com/apg/pc-micro-reimburse/common/close.png")
+        center no-repeat;
+      background-size: 16px 16px;
+    }
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    padding: 10px 16px 10px 16px;
+    &:hover {
+      background: rgba(239, 246, 255, 1);
+      .ant-checkbox-wrapper {
+        span:last-child {
+          color: #057cff;
+        }
+      }
+    }
+
+    .ant-checkbox-wrapper {
+      flex: 1;
+      span:last-child {
+        flex: 1;
+      }
+    }
+  }
+
+  .selected-box {
+    align-items: center;
+    &:hover {
+      background: rgba(247, 248, 252, 1);
+      cursor: pointer;
+    }
+    .selected-name {
+      flex: 1;
+      margin-right: 15px;
+    }
+  }
+
+  .btn-bar {
+    display: flex;
+    flex-flow: row-reverse;
+    padding-top: 12px;
+  }
+}
+
+.condition-edit-modal-wrapper {
+  width: 722px !important;
+  .ant-modal-body {
+    padding: 0;
+    .ant-checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      flex-flow: row-reverse;
+    }
+  }
+}
+
+.condition-edit-fee-group {
+  padding: 10px 16px 10px 24px;
+  cursor: pointer;
+  position: relative;
+  .line-end-arrow {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    width: 0;
+    height: 4px;
+    border-style: solid;
+    border-width: 6px 5px 4px;
+    border-color: #70788d transparent transparent;
+  }
+  .condition-edit-deg {
+    transform: rotate(-90deg);
+  }
+  .condition-edit-deg-enter-active,
+  .condition-edit-deg-appear-active {
+    transform: rotate(0);
+    transition: transform 0.1s ease-in;
+  }
+  .condition-edit-deg-enter-done {
+    transform: rotate(0);
+  }
+  .condition-edit-deg-exit {
+    transform: rotate(0);
+  }
+  .condition-edit-deg-exit-active {
+    transform: rotate(-90deg);
+    transition: all 0.1s ease-in;
+  }
+  .condition-edit-deg-exit-done {
+    transform: rotate(-90deg);
+  }
+}
+
+.condition-edit-slide-down-enter,
+.condition-edit-slide-down-appear {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0.7;
+}
+
+.condition-edit-slide-down-enter-active,
+.condition-edit-slide-down-appear-active {
+  max-height: 500px;
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+  opacity: 1;
+}
+.condition-edit-slide-down-enter-done {
+  max-height: 1000px;
+  overflow: hidden;
+  opacity: 1;
+}
+
+.condition-edit-slide-down-exit {
+  max-height: 150px;
+  overflow: hidden;
+  opacity: 1;
+}
+.condition-edit-slide-down-exit-active {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+  opacity: 0.7;
+}
+.condition-edit-slide-down-exit-done {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0.7;
+}
