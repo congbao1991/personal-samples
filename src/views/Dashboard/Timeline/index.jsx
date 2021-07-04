@@ -12,13 +12,22 @@ function randomColor() {
 
 function DashboardTimeline() {
 
+  const colors = {
+    1: randomColor(),
+    2: randomColor(),
+    3: randomColor(),
+  }
+
   return (
     <Timeline style={{marginLeft: 30, marginTop: 30}}>
-      <Timeline.Item color={randomColor()}>
-        <Link to="/workbench">拖拽组件构建页面Demo</Link>
+      <Timeline.Item color={colors[1]}>
+        <Link to="/workbench" style={{color: colors[1]}}>拖拽组件构建页面Demo</Link>
       </Timeline.Item>
-      <Timeline.Item color={randomColor()}>
-        <Link to="/approval-flow">审批流树状可视配置Demo</Link>
+      <Timeline.Item color={colors[2]}>
+        <Link to="/approval-flow" style={{color: colors[2]}}>审批流树状可视配置Demo</Link>
+      </Timeline.Item>
+      <Timeline.Item color={colors[3]}>
+        <Link to="/time-selector" style={{color: colors[3]}}>拖拽时间选择器</Link>
       </Timeline.Item>
     </Timeline>
   )

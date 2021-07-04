@@ -10,7 +10,7 @@ const MENU_LIST = [
   },
   {
     key: 'test',
-    label: '测试',
+    label: '拖拽演示',
     path: '/workbench'
   }
 ]

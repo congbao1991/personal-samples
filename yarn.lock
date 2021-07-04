@@ -1106,8 +1106,8 @@
 
 "@congbao/time-period-selector@^1.0.1", "@congbao/time-period-selector@^1.0.5":
   version "1.0.5"
-  resolved "https://registry.npm.taobao.org/@congbao/time-period-selector/download/@congbao/time-period-selector-1.0.5.tgz#a776b3e601bb204f2b931bdfc89b3ee11c504372"
-  integrity sha1-p3az5gG7IE8rkxvfyJs+4RxQQ3I=
+  resolved "https://registry.yarnpkg.com/@congbao/time-period-selector/-/time-period-selector-1.0.5.tgz#a776b3e601bb204f2b931bdfc89b3ee11c504372"
+  integrity sha512-7YN6dUM1N5sVaY/LMz/mR/2wGoR3hcH7+bIN115Yi+5x6FHWndTFzg4o53cKzriXLemjc38/3+jyd7BYD1HTKg==
   dependencies:
     "@congbao/time-period-selector" "^1.0.1"
     babel-preset-stage-2 "^6.24.1"
