@@ -16,12 +16,16 @@ function DashboardTimeline() {
     color1: randomColor(),
     color2: randomColor(),
     color3: randomColor(),
+    color4: randomColor(),
   })
 
   return (
     <Timeline style={{marginLeft: 30, marginTop: 30}}>
       <Timeline.Item color={colorMap.color1}>
         <Link to="/workbench" style={{color: colorMap.color1}}>拖拽组件构建页面Demo</Link>
+      </Timeline.Item>
+      <Timeline.Item color={colorMap.color4}>
+        <Link to="/custom-tmpl" style={{color: colorMap.color4}}>拖拽组件配置移动端页面demo（含配置）</Link>
       </Timeline.Item>
       <Timeline.Item color={colorMap.color2}>
         <Link to="/approval-flow" style={{color: colorMap.color2}}>审批流树状可视配置Demo</Link>
