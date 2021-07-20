@@ -1106,7 +1106,7 @@
 
 "@congbao/time-period-selector@^1.0.1", "@congbao/time-period-selector@^1.0.5":
   version "1.0.5"
-  resolved "https://registry.npm.taobao.org/@congbao/time-period-selector/download/@congbao/time-period-selector-1.0.5.tgz#a776b3e601bb204f2b931bdfc89b3ee11c504372"
+  resolved "https://registry.nlark.com/@congbao/time-period-selector/download/@congbao/time-period-selector-1.0.5.tgz#a776b3e601bb204f2b931bdfc89b3ee11c504372"
   integrity sha1-p3az5gG7IE8rkxvfyJs+4RxQQ3I=
   dependencies:
     "@congbao/time-period-selector" "^1.0.1"
@@ -2114,6 +2114,26 @@ babel-preset-stage-3@^6.24.1:
     babel-plugin-transform-async-to-generator "^6.24.1"
     babel-plugin-transform-exponentiation-operator "^6.24.1"
     babel-plugin-transform-object-rest-spread "^6.22.0"
+
+babel-react-rfor@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.nlark.com/babel-react-rfor/download/babel-react-rfor-1.0.2.tgz#a3318c108668f1bd9966011fc2a5e1871cf3e909"
+  integrity sha1-ozGMEIZo8b2ZZgEfwqXhhxzz6Qk=
+
+babel-react-rif@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.nlark.com/babel-react-rif/download/babel-react-rif-1.0.0.tgz#e01a12682d7655112d42130bd15edc46f4cb86e0"
+  integrity sha1-4BoSaC12VREtQhML0V7cRvTLhuA=
+
+babel-react-rmodel@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.nlark.com/babel-react-rmodel/download/babel-react-rmodel-1.0.2.tgz#e111128b8a8492890770b6d50707f0878e45d0a9"
+  integrity sha1-4RESi4qEkokHcLbVBwfwh45F0Kk=
+
+babel-react-rshow@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.nlark.com/babel-react-rshow/download/babel-react-rshow-1.0.0.tgz#042b8606dd068f19fd5c6a79377d4d9d5b4a0199"
+  integrity sha1-BCuGBt0Gjxn9XGp5N31NnVtKAZk=
 
 babel-runtime@^6.22.0, babel-runtime@^6.26.0:
   version "6.26.0"

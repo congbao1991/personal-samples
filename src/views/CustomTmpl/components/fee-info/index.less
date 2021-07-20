@@ -1,0 +1,96 @@
+.get-invoice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  overflow: hidden;
+
+  .fee-list-title {
+    text-align: left;
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: left;
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #fff;
+    line-height: 50px;
+    margin-top: 0;
+    position: relative;
+    .label {
+      padding-left: 10px;
+    }
+    .required {
+      color: #ff3b30;
+    }
+
+    &.on-list {
+      margin: 0 12px;
+      width: auto;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      &:before {
+        content: "";
+        pointer-events: none;
+        box-sizing: border-box;
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        left: 0;
+        top: 0;
+        border-bottom: 1px solid #e5e5e5;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+      }
+    }
+  }
+
+  .btn {
+    width: 239px;
+    height: 38px;
+    line-height: 36px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: solid 1px #e5e5e5;
+    color: #333333;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .btn-large {
+    width: 240px;
+  }
+
+  .btn-primary {
+    background-color: #007aff;
+    color: #ffffff;
+    border: none;
+  }
+
+  .expense-add {
+    width: 191px;
+    height: 37.5px;
+    border-radius: 2px;
+    margin: 15px auto 0;
+    text-align: center;
+    background-color: #ffffff;
+    font-size: 12px;
+    color: #007aff;
+    span.underline {
+      // border-bottom: 1px solid #007aff;
+    }
+  }
+}
+
+.get-invoice .img {
+  width: 151px;
+  height: 115px;
+}
+.get-invoice .tip {
+  font-size: 12px;
+  color: #999;
+}
+.get-invoice .button {
+  margin-top: 20px;
+}

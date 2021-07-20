@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Timeline } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -12,13 +12,22 @@ function randomColor() {
 
 function DashboardTimeline() {
 
+  const [colorMap] = useState({
+    color1: randomColor(),
+    color2: randomColor(),
+    color3: randomColor(),
+  })
+
   return (
     <Timeline style={{marginLeft: 30, marginTop: 30}}>
-      <Timeline.Item color={randomColor()}>
-        <Link to="/workbench">拖拽组件构建页面Demo</Link>
+      <Timeline.Item color={colorMap.color1}>
+        <Link to="/workbench" style={{color: colorMap.color1}}>拖拽组件构建页面Demo</Link>
       </Timeline.Item>
-      <Timeline.Item color={randomColor()}>
-        <Link to="/approval-flow">审批流树状可视配置Demo</Link>
+      <Timeline.Item color={colorMap.color2}>
+        <Link to="/approval-flow" style={{color: colorMap.color2}}>审批流树状可视配置Demo</Link>
+      </Timeline.Item>
+      <Timeline.Item color={colorMap.color3}>
+        <Link to="/time-selector" style={{color: colorMap.color3}}>拖拽框选时间选择器</Link>
       </Timeline.Item>
     </Timeline>
   )

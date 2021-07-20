@@ -30,9 +30,10 @@ module.exports = {
     }),
     new HappyPack({
       id: 'babel',
-      loaders: ['babel-loader?cacheDirectory'],
+      loaders: ['babel-loader?cacheDirectory=true'],
       threadPool: happyThreadPool,
-      verbose: true,
+      verboseWhenProfiling: false,
+      verbose: false,
     })
   ],
   // 模块

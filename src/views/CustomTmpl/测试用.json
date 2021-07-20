@@ -1,0 +1,661 @@
+{
+  "desc": "创建报销单默认模板",
+  "view": [
+    {
+      "id": 111,
+      "pid": 0,
+      "component": "commiter",
+      "fixed": true,
+      "order": 0,
+      "type": 2
+    },
+    {
+      "id": 222,
+      "pid": 0,
+      "component": "reimburseer",
+      "fixed": true,
+      "order": 2,
+      "type": 2
+    },
+
+    {
+      "id": 1122,
+      "pid": 0,
+      "component": "title",
+      "fixed": true,
+      "order": 3,
+      "type": 2
+    },
+    {
+      "id": 444,
+      "pid": 0,
+      "component": "department",
+      "fixed": true,
+      "order": 4,
+      "type": 2
+    },
+    {
+      "id": 1112,
+      "pid": 0,
+      "component": "child_list",
+      "fixed": true,
+      "title": "报销清单",
+      "order": 10,
+      "type": 2
+    },
+
+    {
+      "id": 1177,
+      "pid": 0,
+      "component": "bank",
+      "fixed": true,
+      "order": 12,
+      "type": 2
+    },
+    {
+      "id": 1432,
+      "pid": 0,
+      "component": "summary",
+      "fixed": true,
+      "order": 14,
+      "type": 2
+    },
+    {
+      "id": 1435,
+      "pid": 0,
+      "component": "apply_list",
+      "order": 16,
+      "type": 2
+    },
+    {
+      "id": 1436,
+      "pid": 0,
+      "component": "fee_info",
+      "fixed": true,
+      "order": 18,
+      "type": 2
+    },
+    {
+      "id": 1188,
+      "pid": 0,
+      "component": "custom_attach",
+      "order": 11,
+      "type": 1
+    }
+  ],
+  "model": [
+    {
+      "id": 111,
+      "pid": 0,
+      "field": "commiter",
+      "type": "Object",
+      "label": "提单人",
+      "tip": "",
+      "required": true,
+      "print": true,
+      "belong": "main",
+      "items": {
+        "uid": {
+          "field": "uid",
+          "type": "Number",
+          "label": "用户uid",
+          "required": true
+        },
+        "name": {
+          "field": "name",
+          "type": "String",
+          "label": "用户名",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": 222,
+      "pid": 0,
+      "field": "reimburseer",
+      "type": "Object",
+      "label": "报销人",
+      "required": true,
+      "print": true,
+      "belong": "main",
+      "items": {
+        "uid": {
+          "field": "uid",
+          "type": "Number",
+          "label": "用户uid",
+          "required": true
+        },
+        "name": {
+          "field": "name",
+          "type": "String",
+          "label": "用户名",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": 1122,
+      "type": "Object",
+      "field": "title",
+      "label": "费用主体",
+      "tip": "请选择",
+      "required": true,
+      "print": true,
+      "belong": "main",
+      "items": {
+        "id": {
+          "type": "Number",
+          "field": "id",
+          "label": "抬头id",
+          "required": true
+        },
+        "name": {
+          "type": "String",
+          "field": "name",
+          "label": "抬头名",
+          "required": true
+        }
+      }
+    },
+    {
+      "field": "department",
+      "type": "Object",
+      "label": "报销部门",
+      "tip": "请选择",
+      "required": true,
+      "print": true,
+      "belong": "main",
+      "items": {
+        "id": {
+          "field": "id",
+          "type": "String",
+          "label": "部门id",
+          "required": true
+        },
+        "name": {
+          "field": "name",
+          "type": "String",
+          "label": "部门名",
+          "required": true
+        },
+        "full_name": {
+          "field": "full_name",
+          "type": "String",
+          "label": "部门全名",
+          "required": true
+        }
+      },
+      "id": 444,
+      "pid": 0
+    },
+    {
+      "id": 1112,
+      "pid": 0,
+      "belong": "main",
+      "label": "报销清单",
+      "tip": "添加一笔报销",
+      "type": "Array",
+      "field": "child_list",
+      "required": true,
+      "print": true,
+      "items": {
+        "id": {
+          "type": "String",
+          "field": "id",
+          "label": "子单id、",
+          "required": true
+        },
+        "type": {
+          "type": "Number",
+          "field": "type",
+          "label": "报销单类型",
+          "required": true
+        },
+        "amount": {
+          "type": "Number",
+          "field": "amount",
+          "label": "金额",
+          "required": true
+        },
+        "summary": {
+          "type": "String",
+          "field": "summary",
+          "label": "事由",
+          "required": true
+        },
+        "travel_info": {
+          "type": "Object",
+          "field": "travel_info",
+          "items": {
+            "end_time": {
+              "type": "Number",
+              "field": "end_time",
+              "label": "结束时间",
+              "required": true
+            },
+            "start_time": {
+              "type": "Number",
+              "field": "start_time",
+              "label": "开始时间",
+              "required": true
+            }
+          },
+          "label": "",
+          "required": true
+        },
+        "invoice_total": {
+          "type": "Number",
+          "field": "invoice_total",
+          "label": "发票数量",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": 1177,
+      "pid": 0,
+      "type": "Object",
+      "belong": "main",
+      "field": "bank",
+      "label": "收款账号",
+      "tip": "请选择",
+      "default_type": "empty",
+      "write_req": "any_individual",
+      "source": "sys_account",
+      "required": true,
+      "print": true,
+      "items": {
+        "id": {
+          "type": "Number",
+          "field": "id",
+          "label": "银行卡id",
+          "required": true
+        },
+        "number": {
+          "type": "String",
+          "field": "number",
+          "label": "卡号",
+          "required": true
+        },
+        "bank_field": {
+          "type": "String",
+          "field": "bank_field",
+          "label": "银行名称",
+          "required": true
+        },
+        "user_field": {
+          "type": "String",
+          "field": "user_field",
+          "label": "开户名称",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": 1188,
+      "pid": 0,
+      "type": "Array",
+      "belong": "main",
+      "field": "custom_attach",
+      "label": "附件",
+      "required": false,
+      "print": false,
+      "items": {
+        "size": {
+          "type": "Number",
+          "field": "size",
+          "label": "文件大小",
+          "required": true
+        },
+        "attach_url": {
+          "type": "String",
+          "field": "attach_url",
+          "label": "附件地址",
+          "required": true
+        },
+        "attach_name": {
+          "type": "String",
+          "field": "attach_name",
+          "label": "文件名",
+          "required": true
+        },
+        "thumbnail_url": {
+          "type": "String",
+          "field": "thumbnail_url",
+          "label": "缩略图地址",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": 1432,
+      "pid": 0,
+      "field": "summary",
+      "type": "String",
+      "belong": "child",
+      "label": "报销事由",
+      "length_limit": 250,
+      "required": true,
+      "print": true
+    },
+    {
+      "id": 1435,
+      "pid": 0,
+      "type": "Array",
+      "belong": "child",
+      "label": "关联事前申请",
+      "tip": "请选择",
+      "apply_type": null,
+      "limit_apply_range": ["bear_reimburse_apply"],
+      "required": false,
+      "print": true,
+      "relation_type": null,
+      "relation_apply_type": null,
+      "limit_apply_number": "multiple",
+      "rumtiem": ["qwh5", "wxapp"],
+      "field": "apply_list",
+      "items": {
+        "id": {
+          "type": "String",
+          "field": "id",
+          "label": "申请单id",
+          "required": true
+        },
+        "date": {
+          "type": "Number",
+          "field": "date",
+          "label": "招待日期",
+          "required": true
+        },
+        "time": {
+          "type": "Number",
+          "field": "time",
+          "label": "提单时间",
+          "required": true
+        },
+        "type": {
+          "type": "Number",
+          "field": "type",
+          "label": "类型",
+          "required": true
+        },
+        "summary": {
+          "type": "String",
+          "field": "summary",
+          "label": "事由",
+          "required": true
+        },
+        "travel_list": {
+          "type": "Array",
+          "field": "travel_list",
+          "items": {
+            "end_time": {
+              "type": "Number",
+              "field": "end_time",
+              "label": "行程结束时间",
+              "required": true
+            },
+            "trans_way": {
+              "type": "String",
+              "field": "trans_way",
+              "label": "出行方式-业务控件",
+              "required": true
+            },
+            "start_time": {
+              "type": "Number",
+              "field": "start_time",
+              "label": "行程开始时间",
+              "required": true
+            },
+            "trans_list": {
+              "type": "Array",
+              "field": "trans_list",
+              "items": {
+                "end_point": {
+                  "type": "String",
+                  "field": "end_point",
+                  "label": "目的地点",
+                  "required": true
+                },
+                "start_point": {
+                  "type": "String",
+                  "field": "start_point",
+                  "label": "开始地点",
+                  "required": true
+                }
+              },
+              "label": "行程明细-业务控件",
+              "required": true
+            },
+            "trans_time": {
+              "type": "Number",
+              "field": "trans_time",
+              "label": "时长",
+              "required": true
+            }
+          },
+          "label": "出行明细-业务控件",
+          "required": true
+        }
+      }
+    },
+    {
+      "id": 1436,
+      "pid": 0,
+      "type": "Array",
+      "belong": "child",
+      "label": "费用明细",
+      "required": true,
+      "print": true,
+      "field": "fee_info",
+      "items": {
+        "note": {
+          "type": "String",
+          "field": "note",
+          "label": "摘要",
+          "required": true
+        },
+        "fee_type": {
+          "type": "Number",
+          "field": "fee_type",
+          "label": "费用类型",
+          "required": true
+        },
+        "fee_field": {
+          "type": "String",
+          "field": "fee_field",
+          "label": "费用名称",
+          "required": true
+        },
+        "attach_list": {
+          "type": "Array",
+          "field": "attach_list",
+          "items": {
+            "size": {
+              "type": "Number",
+              "field": "size",
+              "label": "",
+              "required": true
+            },
+            "attach_url": {
+              "type": "String",
+              "field": "attach_url",
+              "label": "",
+              "required": true
+            },
+            "attach_field": {
+              "type": "String",
+              "field": "attach_field",
+              "label": "",
+              "required": true
+            },
+            "thumbnail_url": {
+              "type": "String",
+              "field": "thumbnail_url",
+              "label": "",
+              "required": true
+            }
+          },
+          "label": "附件",
+          "required": true
+        },
+        "invoice_list": {
+          "type": "Array",
+          "field": "invoice_list",
+          "items": {
+            "note": {
+              "type": "String",
+              "field": "note",
+              "label": "",
+              "required": true
+            },
+            "amount": {
+              "type": "Number",
+              "field": "amount",
+              "label": "金额",
+              "required": true
+            },
+            "source": {
+              "type": "Number",
+              "field": "source",
+              "label": "",
+              "required": true
+            },
+            "order_sn": {
+              "type": "String",
+              "field": "order_sn",
+              "label": "",
+              "required": true
+            },
+            "ticket_sn": {
+              "type": "String",
+              "field": "ticket_sn",
+              "label": "",
+              "required": true
+            },
+            "invoice_id": {
+              "type": "String",
+              "field": "invoice_id",
+              "label": "",
+              "required": true
+            },
+            "attach_list": {
+              "type": "Array",
+              "field": "attach_list",
+              "items": {
+                "size": {
+                  "type": "Number",
+                  "field": "size",
+                  "label": "",
+                  "required": true
+                },
+                "attach_url": {
+                  "type": "String",
+                  "field": "attach_url",
+                  "label": "",
+                  "required": true
+                },
+                "attach_field": {
+                  "type": "String",
+                  "field": "attach_field",
+                  "label": "",
+                  "required": true
+                },
+                "thumbnail_url": {
+                  "type": "String",
+                  "field": "thumbnail_url",
+                  "label": "",
+                  "required": true
+                }
+              },
+              "label": "发票附件",
+              "required": true
+            },
+            "check_state": {
+              "type": "Number",
+              "field": "check_state",
+              "label": "查验状态",
+              "required": true
+            },
+            "sales_field": {
+              "type": "String",
+              "field": "sales_field",
+              "label": "",
+              "required": true
+            },
+            "ticket_code": {
+              "type": "String",
+              "field": "ticket_code",
+              "label": "",
+              "required": true
+            },
+            "ticket_date": {
+              "type": "Number",
+              "field": "ticket_date",
+              "label": "",
+              "required": true
+            },
+            "verify_info": {
+              "type": "Array",
+              "field": "verify_info",
+              "items": {
+                "verify_msg": {
+                  "type": "String",
+                  "field": "verify_msg",
+                  "label": "审核消息",
+                  "required": true
+                },
+                "verity_status": {
+                  "type": "Number",
+                  "field": "verity_status",
+                  "label": "审核结果",
+                  "required": true
+                }
+              },
+              "label": "智能审核结果",
+              "required": true
+            },
+            "invoice_type": {
+              "type": "Number",
+              "field": "invoice_type",
+              "label": "",
+              "required": true
+            },
+            "reimburse_amount": {
+              "type": "Number",
+              "field": "reimburse_amount",
+              "label": "报销金额",
+              "required": true
+            }
+          },
+          "label": "发票列表",
+          "required": true
+        },
+        "total_amount": {
+          "type": "Number",
+          "field": "total_amount",
+          "label": "总金额",
+          "required": true
+        },
+        "invoice_count": {
+          "type": "Number",
+          "field": "invoice_count",
+          "label": "总发票数",
+          "required": true
+        },
+        "parent_fee_type": {
+          "type": "Number",
+          "field": "parent_fee_type",
+          "label": "父级费用类型",
+          "required": true
+        },
+        "parent_fee_field": {
+          "type": "String",
+          "field": "parent_fee_field",
+          "label": "父级费用名称",
+          "required": true
+        }
+      }
+    }
+  ]
+}

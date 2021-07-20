@@ -1,0 +1,48 @@
+.custom-detailed {
+  background: rgb(240, 241, 245);
+  .custom-detailed-title {
+    width: 100%;
+    height: 47px;
+    line-height: 47px;
+    background-color: #fff;
+    padding-left: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-detailed-container {
+    position: relative;
+    background: rgb(240, 241, 245);
+    padding: 0 10px;
+
+    .placeholder-view {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      margin: 0;
+      opacity: 0.4;
+    }
+  }
+
+  .custom-detailed-footer {
+    width: 100%;
+    height: 53px;
+    line-height: 53px;
+    text-align: center;
+    font-size: 15px;
+    color: #007aff;
+    background-color: #fff;
+  }
+
+  .sortable-kit {
+    & > div:nth-child(1) {
+      margin-top: 10px;
+    }
+  }
+}
