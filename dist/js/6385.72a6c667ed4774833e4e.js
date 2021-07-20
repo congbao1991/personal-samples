@@ -1,0 +1,1 @@
+(self.webpackChunkreact_webpack=self.webpackChunkreact_webpack||[]).push([[6385],{54992:(e,t,a)=>{"use strict";a.r(t),a.d(t,{default:()=>n});var c=a(67294);const n=function(e){return c.createElement("div",{className:"committer"},c.createElement("div",null,e.componentData.form.label),c.createElement("div",null,e.componentData.form.tip))}}}]);
