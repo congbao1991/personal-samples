@@ -16,7 +16,7 @@ function DashboardTimeline() {
     color1: randomColor(),
     color2: randomColor(),
     color3: randomColor(),
-    color4: randomColor(),
+    color4: randomColor()
   })
 
   return (

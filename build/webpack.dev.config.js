@@ -1,4 +1,6 @@
 const { merge } = require("webpack-merge");
+const webpack = require('webpack');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const baseWebpackConfig = require("./webpack.base.config")
 const utils = require("./utils")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
@@ -14,6 +16,8 @@ module.exports = merge(baseWebpackConfig, {
     rules: utils.cssLoaders()
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       filename: utils.resolve('dist/index.html'), // html模板的生成路径
