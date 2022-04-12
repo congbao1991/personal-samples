@@ -236,7 +236,7 @@ module.exports = {
         "react/no-did-update-set-state": 2, // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-did-update-set-state.md
         "react/no-multi-comp": [2, {"ignoreStateless": true }], // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
         "react/no-unknown-property": 2, // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-unknown-property.md
-        "react/react-in-jsx-scope": 2, // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
+        "react/react-in-jsx-scope": 0, // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md
         "react/self-closing-comp": 0, // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/self-closing-comp.md
         "react/jsx-wrap-multilines": [1, { // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/wrap-multilines.md
             "declaration": "parens-new-line",

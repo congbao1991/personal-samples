@@ -1,39 +1,32 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
 const utils = require('./utils')
-const CopyWebpackPlugin = require("copy-webpack-plugin")
-const HappyPack = require('happypack');
-const os = require('os');
-const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+
 
 module.exports = {
   entry: {
-    app: "./src/index"
+    app: './src/index'
   },
   output: {
-    path: utils.resolve("dist"),
-    filename: "js/[name].js",
-    publicPath: "/"
+    path: utils.resolve('dist'),
+    filename: 'js/[name].js',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.json', '.jsx'],
     alias: {
-      '@': utils.join("src")
-    }
+      '@': utils.join('src')
+    },
+    modules: [path.resolve(__dirname, '../node_modules')]
   },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
         {
           from: utils.resolve('static'),
-          to: "static"
+          to: 'static'
         }
       ]
-    }),
-    new HappyPack({
-      id: 'babel',
-      loaders: ['babel-loader?cacheDirectory=true'],
-      threadPool: happyThreadPool,
-      verboseWhenProfiling: false,
-      verbose: false,
     })
   ],
   // 模块
@@ -42,7 +35,16 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['happypack/loader?id=babel'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            // 缓存转换出的结果
+            cacheDirectory: true,
+            // 只对src目录下的文件使用babel-loader处理，可以缩小命中范围
+            include: path.resolve(__dirname, '../src'),
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

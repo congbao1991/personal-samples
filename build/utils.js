@@ -1,18 +1,18 @@
-const path = require("path")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-exports.resolve = function (dir) {
+exports.resolve = function(dir) {
   return path.resolve(__dirname, '..', dir)
 }
 
-exports.join = function (dir) {
+exports.join = function(dir) {
   return path.join(__dirname, '..', dir)
 }
 
-exports.cssLoaders = function (options) {
-  options = options || {};
+exports.cssLoaders = function(options) {
+  options = options || {}
   const cssLoader = {
-    loader: 'css-loader',  // 转换css
+    loader: 'css-loader', // 转换css
     options: {
       sourceMap: options.sourceMap
     }
@@ -22,7 +22,7 @@ exports.cssLoaders = function (options) {
     const loaders = [cssLoader, 'postcss-loader'];
     if (loader) {
       loaders.push({
-        loader: loader + "-loader",
+        loader: `${loader}-loader`,
         options: Object.assign({}, loaderOptions, {
           sourceMap: options.sourceMap
         }, {
@@ -41,17 +41,16 @@ exports.cssLoaders = function (options) {
         {
           loader: MiniCssExtractPlugin.loader
         }
-      ].concat(loaders);
-    } else {
-      return ['style-loader'].concat(loaders)
+      ].concat(loaders)
     }
+    return ['style-loader'].concat(loaders)
   }
 
   const object = {
     css: generateLoaders(),
-    less: generateLoaders("less")
+    less: generateLoaders('less')
   }
-  const output = [];
+  const output = []
   for (let key in object) {
     const loader = object[key];
     output.push({
@@ -59,5 +58,5 @@ exports.cssLoaders = function (options) {
       use: loader
     })
   }
-  return output;
+  return output
 }

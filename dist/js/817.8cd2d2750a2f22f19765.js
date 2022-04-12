@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_webpack=self.webpackChunkreact_webpack||[]).push([[817],{40817:(e,c,a)=>{a.r(c),a.d(c,{default:()=>n});var t=a(85893);a(67294);const n=function(e){return(0,t.jsxs)("div",{className:"committer",children:[(0,t.jsx)("div",{children:e.componentData.form.label}),(0,t.jsx)("div",{children:e.componentData.form.tip})]})}}}]);

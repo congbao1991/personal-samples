@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { updateComponent } from '@/store/actions'
+import { useSelector } from 'react-redux'
 
 import './index.less'
 
@@ -10,20 +9,18 @@ function Marklines() {
   const curComponentID = useSelector(state => state.crud.curComponentID)
   const currentComponent = componentList.find(com => com.id === curComponentID)
 
-  const dispatch = useDispatch()
 
   const xLines = []
   const yLines = []
-  let timer = null
   const nearly = (current, target, direction = 'top') => {
-    clearTimeout(timer)
-    if (Math.abs(current - target) < 3) {
-      const style = {
-        [direction]: current
-      }
-      timer = setTimeout(() => {
-        dispatch(updateComponent({ style }))
-      })
+    if (Math.abs(current - target) < 10) {
+      console.log(123)
+      // const style = {
+      //   [direction]: current
+      // }
+      // timer = setTimeout(() => {
+      //   dispatch(updateComponent({ style }))
+      // })
       return true
     }
     return false

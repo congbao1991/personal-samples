@@ -16,7 +16,8 @@ function DashboardTimeline() {
     color1: randomColor(),
     color2: randomColor(),
     color3: randomColor(),
-    color4: randomColor()
+    color4: randomColor(),
+    color5: randomColor(),
   })
 
   return (
@@ -32,6 +33,9 @@ function DashboardTimeline() {
       </Timeline.Item>
       <Timeline.Item color={colorMap.color3}>
         <Link to="/time-selector" style={{color: colorMap.color3}}>拖拽框选时间选择器</Link>
+      </Timeline.Item>
+      <Timeline.Item color={colorMap.color5}>
+        <Link to="/canvas/globalcompositeoperation" style={{color: colorMap.color5}}>canvas globalCompositeOperation</Link>
       </Timeline.Item>
     </Timeline>
   )

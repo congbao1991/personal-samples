@@ -1,20 +1,21 @@
-const { merge } = require("webpack-merge");
-const baseWebpackConfig = require("./webpack.base.config")
-const utils = require("./utils")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { merge } = require('webpack-merge')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin');
+const WebpackBar = require('webpackbar')
+const TerserPlugin = require('terser-webpack-plugin')
+const baseWebpackConfig = require('./webpack.base.config')
+const utils = require('./utils')
 
 module.exports = merge(baseWebpackConfig, {
-  // 指定构建环境  
-  mode: "production",
+  // 指定构建环境
+  mode: 'production',
   output: {
-    path: utils.resolve("dist"),
-    filename: "js/[name].[chunkhash].js",
-    publicPath: "/"
+    path: utils.resolve('dist'),
+    filename: 'js/[name].[chunkhash].js',
+    publicPath: '/'
   },
   module: {
     rules: utils.cssLoaders({ extract: true, sourceMap: true })
@@ -25,19 +26,24 @@ module.exports = merge(baseWebpackConfig, {
     new MiniCssExtractPlugin({
       filename: 'static/styles/[name].[chunkhash].css',
       chunkFilename: 'static/styles/[name].[chunkhash].css',
+      ignoreOrder: true
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: utils.resolve('dist/index.html'), // html模板的生成路径
-      template: 'index.html',//html模板
+      template: 'index.html', // html模板
       inject: true, // true：默认值，script标签位于html文件的 body 底部
       hash: true, // 在打包的资源插入html会加上hash
       //  html 文件进行压缩
       minify: {
-        removeComments: true,               //去注释
-        collapseWhitespace: true,           //压缩空格
-        removeAttributeQuotes: true         //去除属性引用
+        removeComments: true, // 去注释
+        collapseWhitespace: true, // 压缩空格
+        removeAttributeQuotes: true // 去除属性引用
       }
+    }),
+    new WebpackBar({
+      name: 'react-hook',
+      color: 'purple'
     })
   ],
   optimization: {
@@ -81,12 +87,12 @@ module.exports = merge(baseWebpackConfig, {
     }
   },
   performance: {
-    hints: "warning", // 枚举
+    hints: 'warning', // 枚举
     maxAssetSize: 700000, // 整数类型（以字节为单位）
     maxEntrypointSize: 2000000, // 整数类型（以字节为单位）
-    assetFilter: function (assetFilename) {
+    assetFilter(assetFilename) {
       // 提供资源文件名的断言函数
-      return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
+      return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
 
     }
   }
